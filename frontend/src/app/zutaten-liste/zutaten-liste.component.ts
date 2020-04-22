@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-zutaten-liste',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ZutatenListeComponent implements OnInit {
 
-  constructor() { }
+  zutaten: string[];
+
+  constructor() {
+    this.zutaten = [];
+  }
 
   ngOnInit(): void {
+  }
+
+  addZutat(i: number): void {
+    this.zutaten.push('' + i);
+  }
+
+  removeZutat(): void {
+    this.zutaten.pop();
   }
 
 }
