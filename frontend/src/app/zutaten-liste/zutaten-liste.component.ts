@@ -44,6 +44,6 @@ export class ZutatenListeComponent implements OnInit {
   }
 
   getClick(){
-
+    this.rezeptService.getRezept(this.selectedZutaten);
   }
 }
