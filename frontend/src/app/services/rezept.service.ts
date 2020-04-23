@@ -15,6 +15,6 @@ export class RezeptService {
 
   getRezept(zutaten: string[]): Observable<string[]> {
     // return this.client.get<string[]>(this.rezeptUrl + '/zutaten=' + encodeURIComponent(JSON.stringify(zutaten)));
-    return of([]);
+    return of(['Kuchen', 'Pfannkuchen']);
   }
 }
