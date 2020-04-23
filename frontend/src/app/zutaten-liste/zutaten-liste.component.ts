@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild, AfterViewChecked} from '@angular/core';
 import { VerfuegbareZutatenService } from '../services/verfuegbare-zutaten.service';
 import {Router} from '@angular/router';
 import {RezeptViewComponent} from '../rezept-view/rezept-view.component';
@@ -8,9 +8,11 @@ import {RezeptViewComponent} from '../rezept-view/rezept-view.component';
   templateUrl: './zutaten-liste.component.html',
   styleUrls: ['./zutaten-liste.component.css']
 })
-export class ZutatenListeComponent implements OnInit {
+export class ZutatenListeComponent implements OnInit, AfterViewChecked {
 
   public static readonly ri: string = 'zutaten';
+
+  @ViewChild('list') private list: ElementRef;
 
   selectedZutaten: string[];
   zutaten: string[];
@@ -24,6 +26,18 @@ export class ZutatenListeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  ngAfterViewChecked(): void {
+    this.scrollToBottom();
+  }
+
+  scrollToBottom(): void {
+    try {
+      window.scrollTo(0, this.list.nativeElement.offsetHeight);
+    }
+    catch (err) {
+    }
   }
 
   addZutat(i: number): void {
