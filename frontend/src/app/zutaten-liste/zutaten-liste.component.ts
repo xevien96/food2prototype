@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
 import { VerfuegbareZutatenService } from '../services/verfuegbare-zutaten.service';
+import { RezeptService } from '../services/rezept.service';
 
 @Component({
   selector: 'app-zutaten-liste',
@@ -13,7 +13,8 @@ export class ZutatenListeComponent implements OnInit {
   zutaten: string[];
 
   constructor(
-    private zutatenService: VerfuegbareZutatenService
+    private zutatenService: VerfuegbareZutatenService,
+    private rezeptService: RezeptService
   ) {
     this.zutaten = zutatenService.getZutaten();
     this.selectedZutaten = ['', ''];
@@ -40,5 +41,9 @@ export class ZutatenListeComponent implements OnInit {
 
   getSelectableZutaten(selected: string): string[] {
     return this.zutaten.filter(item => item === selected || !this.selectedZutaten.includes(item));
+  }
+
+  getClick(){
+
   }
 }
