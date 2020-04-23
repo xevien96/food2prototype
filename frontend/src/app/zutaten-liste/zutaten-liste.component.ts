@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { VerfuegbareZutatenService } from '../services/verfuegbare-zutaten.service';
 
 @Component({
   selector: 'app-zutaten-liste',
@@ -10,8 +11,10 @@ export class ZutatenListeComponent implements OnInit {
 
   zutaten: string[];
 
-  constructor() {
-    this.zutaten = [];
+  constructor(
+    zutatenService: VerfuegbareZutatenService
+  ) {
+    this.zutaten = zutatenService.getZutaten();
   }
 
   ngOnInit(): void {
