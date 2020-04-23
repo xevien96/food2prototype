@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { VerfuegbareZutatenService } from '../services/verfuegbare-zutaten.service';
-import { RezeptService } from '../services/rezept.service';
+import {Router} from '@angular/router';
+import {RezeptViewComponent} from '../rezept-view/rezept-view.component';
 
 @Component({
   selector: 'app-zutaten-liste',
@@ -9,12 +10,14 @@ import { RezeptService } from '../services/rezept.service';
 })
 export class ZutatenListeComponent implements OnInit {
 
+  public static readonly ri: string = 'zutaten';
+
   selectedZutaten: string[];
   zutaten: string[];
 
   constructor(
     private zutatenService: VerfuegbareZutatenService,
-    private rezeptService: RezeptService
+    private router: Router
   ) {
     this.zutaten = zutatenService.getZutaten();
     this.selectedZutaten = ['', ''];
@@ -43,7 +46,7 @@ export class ZutatenListeComponent implements OnInit {
     return this.zutaten.filter(item => item === selected || !this.selectedZutaten.includes(item));
   }
 
-  getClick(){
-    this.rezeptService.getRezept(this.selectedZutaten);
+  toRezept(){
+    this.router.navigate([RezeptViewComponent.ri + JSON.stringify(this.selectedZutaten)]);
   }
 }

@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RezeptViewComponent implements OnInit {
 
+  public static readonly ri: string = 'rezepte/';
+
   constructor() { }
 
   ngOnInit(): void {
