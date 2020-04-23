@@ -11,7 +11,7 @@ export class RezeptViewComponent implements OnInit {
 
   public static readonly ri: string = 'rezepte/';
 
-  private rezepte: string[]
+  rezepte: string[]
 
   constructor(
     private route: ActivatedRoute,
