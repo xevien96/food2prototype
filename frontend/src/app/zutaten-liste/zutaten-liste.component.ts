@@ -13,7 +13,7 @@ export class ZutatenListeComponent implements OnInit {
   zutaten: string[];
 
   constructor(
-    zutatenService: VerfuegbareZutatenService
+    private zutatenService: VerfuegbareZutatenService
   ) {
     this.zutaten = zutatenService.getZutaten();
     this.selectedZutaten = ['', ''];
