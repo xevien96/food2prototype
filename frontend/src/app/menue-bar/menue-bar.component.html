@@ -1,0 +1,11 @@
+<mat-toolbar color="primary">
+  <p class="centered">foodswipe</p>
+  <button mat-icon-button [mat-menu-trigger-for]="menu" aria-label="Main menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <span>Test</span>
+    </button>
+  </mat-menu>
+</mat-toolbar>

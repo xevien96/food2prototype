@@ -10,12 +10,17 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import { RezeptViewComponent } from './rezept-view/rezept-view.component';
 import { AppRoutingModule } from './app-routing.module';
+import { MenueBarComponent } from './menue-bar/menue-bar.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
     AppComponent,
     ZutatenListeComponent,
-    RezeptViewComponent
+    RezeptViewComponent,
+    MenueBarComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +29,10 @@ import { AppRoutingModule } from './app-routing.module';
     MatButtonModule,
     MatFormFieldModule,
     MatSelectModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
