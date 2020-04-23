@@ -1,6 +1,13 @@
 <p>zutaten-liste works!</p>
-<div *ngFor="let zutat of zutaten">
-  <p>{{zutat}}</p>
+<div *ngFor="let selected of selectedZutaten, let i = index">
+  <mat-form-field>
+    <mat-label>Wähle Zutat aus</mat-label>
+    <mat-select [value]="selected">
+      <div *ngFor="let zutat of getSelectableZutaten(selected)">
+        <mat-option [value]="zutat" (onSelectionChange)="setZutat(i, zutat)">{{zutat}}</mat-option>
+      </div>
+    </mat-select>
+  </mat-form-field>
 </div>
 <button mat-raised-button color="primary" (click)="addZutat(zutaten.length)">add</button>
 <button mat-raised-button color="accent" (click)="removeZutat()">remove</button>

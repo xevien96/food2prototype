@@ -9,23 +9,36 @@ import { VerfuegbareZutatenService } from '../services/verfuegbare-zutaten.servi
 })
 export class ZutatenListeComponent implements OnInit {
 
+  selectedZutaten: string[];
   zutaten: string[];
 
   constructor(
     zutatenService: VerfuegbareZutatenService
   ) {
     this.zutaten = zutatenService.getZutaten();
+    this.selectedZutaten = ['', ''];
   }
 
   ngOnInit(): void {
   }
 
   addZutat(i: number): void {
-    this.zutaten.push('' + i);
+    this.selectedZutaten.push('');
   }
 
   removeZutat(): void {
-    this.zutaten.pop();
+    if (this.selectedZutaten.length > 2) {
+      this.selectedZutaten.pop();
+    }
   }
 
+  setZutat(pos: number, zutat: string): void {
+    if (!this.selectedZutaten.includes(zutat)) {
+      this.selectedZutaten[pos] = zutat;
+    }
+  }
+
+  getSelectableZutaten(selected: string): string[] {
+    return this.zutaten.filter(item => item === selected || !this.selectedZutaten.includes(item));
+  }
 }
