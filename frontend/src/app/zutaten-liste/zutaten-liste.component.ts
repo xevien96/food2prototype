@@ -26,6 +26,8 @@ export class ZutatenListeComponent implements OnInit, AfterViewChecked {
     ])
   });
 
+  private addedZutat: boolean;
+
   constructor(
     private zutatenService: VerfuegbareZutatenService,
     private router: Router,
@@ -33,13 +35,17 @@ export class ZutatenListeComponent implements OnInit, AfterViewChecked {
   ) {
     this.zutaten = zutatenService.getZutaten();
     this.selectedZutaten = ['0', '1'];
+    this.addedZutat = false;
   }
 
   ngOnInit(): void {
   }
 
   ngAfterViewChecked(): void {
-    this.scrollToBottom();
+    if (this.addedZutat) {
+      this.scrollToBottom();
+      this.addedZutat = false;
+    }
   }
 
   scrollToBottom(): void {
@@ -53,6 +59,7 @@ export class ZutatenListeComponent implements OnInit, AfterViewChecked {
   addZutat(): void {
     this.selectedZutaten.push('' + this.selectedZutaten.length);
     this.zutatenControls.push(this.fb.control('', Validators.required));
+    this.addedZutat = true;
   }
 
   removeZutat(): void {
