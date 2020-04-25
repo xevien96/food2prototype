@@ -9,8 +9,6 @@ import {RezeptService} from '../services/rezept.service';
 })
 export class RezeptViewComponent implements OnInit {
 
-  public static readonly ri: string = 'recipe/';
-
   rezepte: string[]
 
   constructor(

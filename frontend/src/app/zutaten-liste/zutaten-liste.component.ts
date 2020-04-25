@@ -3,6 +3,7 @@ import { VerfuegbareZutatenService } from '../services/verfuegbare-zutaten.servi
 import {Router} from '@angular/router';
 import {RezeptViewComponent} from '../rezept-view/rezept-view.component';
 import {FormBuilder, FormGroup, FormArray, Validators} from '@angular/forms';
+import {query} from '@angular/animations';
 
 @Component({
   selector: 'app-zutaten-liste',
@@ -69,7 +70,7 @@ export class ZutatenListeComponent implements OnInit, AfterViewChecked {
 
   toRezept(){
     if (this.selectedZutaten.map<boolean>(zutat => this.zutaten.includes(zutat)).reduce((first, second) => first && second)){
-      this.router.navigate([RezeptViewComponent.ri]);
+      this.router.navigate(['recipe/search'], {queryParams: {ingredients: this.selectedZutaten}});
     }
     else {
       console.log('Es wurd eine nicht existente Zutat ausgewählt');
