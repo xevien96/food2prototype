@@ -4,10 +4,10 @@ import {RezeptService} from '../services/rezept.service';
 
 @Component({
   selector: 'app-rezept-view',
-  templateUrl: './rezept-view.component.html',
-  styleUrls: ['./rezept-view.component.css']
+  templateUrl: './rezepte-list-view.component.html',
+  styleUrls: ['./rezepte-list-view.component.css']
 })
-export class RezeptViewComponent implements OnInit {
+export class RezepteListViewComponent implements OnInit {
 
   rezepte: string[]
 

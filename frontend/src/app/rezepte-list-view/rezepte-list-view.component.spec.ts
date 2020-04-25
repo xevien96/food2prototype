@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RezeptViewComponent } from './rezept-view.component';
+import { RezepteListViewComponent } from './rezepte-list-view.component';
 
-describe('RezeptViewComponent', () => {
-  let component: RezeptViewComponent;
-  let fixture: ComponentFixture<RezeptViewComponent>;
+describe('RezepteListViewComponent', () => {
+  let component: RezepteListViewComponent;
+  let fixture: ComponentFixture<RezepteListViewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RezeptViewComponent ]
+      declarations: [ RezepteListViewComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RezeptViewComponent);
+    fixture = TestBed.createComponent(RezepteListViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

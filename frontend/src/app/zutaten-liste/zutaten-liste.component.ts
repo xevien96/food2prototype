@@ -1,7 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild, AfterViewChecked} from '@angular/core';
 import { VerfuegbareZutatenService } from '../services/verfuegbare-zutaten.service';
 import {Router} from '@angular/router';
-import {RezeptViewComponent} from '../rezept-view/rezept-view.component';
+import {RezepteListViewComponent} from '../rezepte-list-view/rezepte-list-view.component';
 import {FormBuilder, FormGroup, FormArray, Validators} from '@angular/forms';
 import {query} from '@angular/animations';
 
