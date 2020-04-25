@@ -17,7 +17,10 @@ export class RezeptViewComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
+    this.route.queryParamMap.subscribe(map => {
+      const zutaten = map.getAll('ingredients');
+      this.rezepteService.getRezept(zutaten).subscribe(rez => this.rezepte = rez);
+    });
   }
 
 }
