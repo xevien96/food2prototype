@@ -1,15 +1,18 @@
-<div #list>
-  <div *ngFor="let selected of selectedZutaten, let i = index">
-    <mat-form-field>
-      <mat-label>Wähle Zutat aus</mat-label>
-      <mat-select [value]="selected">
-        <div *ngFor="let zutat of getSelectableZutaten(selected)">
-          <mat-option [value]="zutat" (onSelectionChange)="setZutat(i, zutat)">{{zutat}}</mat-option>
-        </div>
-      </mat-select>
-    </mat-form-field>
+<form [formGroup]="zutatenForm">
+  <div formArrayName="zutaten" #list>
+    <div *ngFor="let sel of selectedZutaten, let i = index">
+      <mat-form-field>
+        <mat-label>Wähle Zutat aus</mat-label>
+        <mat-select [formControlName]="i" (selectionChange)="setZutat(i, $event.value)" required>
+          <div *ngFor="let zutat of zutaten">
+            <mat-option [value]="zutat"
+                        *ngIf="zutat === selectedZutaten[i] || !selectedZutaten.includes(zutat)">{{zutat}}</mat-option>
+          </div>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <button mat-raised-button color="primary" (click)="addZutat()">add</button>
+    <button mat-raised-button color="accent" (click)="removeZutat()">remove</button>
+    <button type="submit" mat-raised-button color="warn" (click)="toRezept()" [disabled]="!zutatenForm.valid">get</button>
   </div>
-  <button mat-raised-button color="primary" (click)="addZutat(zutaten.length)">add</button>
-  <button mat-raised-button color="accent" (click)="removeZutat()">remove</button>
-  <button mat-raised-button color="warn" (click)="toRezept()">get</button>
-</div>
+</form>

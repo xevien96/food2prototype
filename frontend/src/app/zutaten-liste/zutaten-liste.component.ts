@@ -2,6 +2,7 @@ import {Component, ElementRef, OnInit, ViewChild, AfterViewChecked} from '@angul
 import { VerfuegbareZutatenService } from '../services/verfuegbare-zutaten.service';
 import {Router} from '@angular/router';
 import {RezeptViewComponent} from '../rezept-view/rezept-view.component';
+import {FormBuilder, FormGroup, FormArray, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-zutaten-liste',
@@ -17,12 +18,20 @@ export class ZutatenListeComponent implements OnInit, AfterViewChecked {
   selectedZutaten: string[];
   zutaten: string[];
 
+  zutatenForm = this.fb.group({
+    zutaten: this.fb.array([
+      this.fb.control('', Validators.required),
+      this.fb.control('', Validators.required)
+    ])
+  });
+
   constructor(
     private zutatenService: VerfuegbareZutatenService,
-    private router: Router
+    private router: Router,
+    private fb: FormBuilder
   ) {
     this.zutaten = zutatenService.getZutaten();
-    this.selectedZutaten = ['', ''];
+    this.selectedZutaten = ['0', '1'];
   }
 
   ngOnInit(): void {
@@ -40,13 +49,15 @@ export class ZutatenListeComponent implements OnInit, AfterViewChecked {
     }
   }
 
-  addZutat(i: number): void {
-    this.selectedZutaten.push('');
+  addZutat(): void {
+    this.selectedZutaten.push('' + this.selectedZutaten.length);
+    this.zutatenControls.push(this.fb.control('', Validators.required));
   }
 
   removeZutat(): void {
     if (this.selectedZutaten.length > 2) {
       this.selectedZutaten.pop();
+      this.zutatenControls.removeAt(this.zutatenControls.length - 1);
     }
   }
 
@@ -56,11 +67,16 @@ export class ZutatenListeComponent implements OnInit, AfterViewChecked {
     }
   }
 
-  getSelectableZutaten(selected: string): string[] {
-    return this.zutaten.filter(item => item === selected || !this.selectedZutaten.includes(item));
+  toRezept(){
+    if (this.selectedZutaten.map<boolean>(zutat => this.zutaten.includes(zutat)).reduce((first, second) => first && second)){
+      this.router.navigate([RezeptViewComponent.ri + JSON.stringify(this.selectedZutaten)]);
+    }
+    else {
+      console.log('Es wurd eine nicht existente Zutat ausgewählt');
+    }
   }
 
-  toRezept(){
-    this.router.navigate([RezeptViewComponent.ri + JSON.stringify(this.selectedZutaten)]);
+  get zutatenControls(): FormArray {
+    return this.zutatenForm.get('zutaten') as FormArray;
   }
 }
