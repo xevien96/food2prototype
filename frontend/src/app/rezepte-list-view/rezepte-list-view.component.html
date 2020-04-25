@@ -1,3 +1,1 @@
-<div *ngFor="let rezept of rezepte">
-  <p>{{rezept}}</p>
-</div>
+<app-rezept-overview [rezept]="rezepte[currentPosition]" (recipeDiscarded)="onRecipeDiscarded()"></app-rezept-overview>

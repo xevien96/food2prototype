@@ -15,13 +15,15 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
 import {ReactiveFormsModule} from '@angular/forms';
+import { RezeptOverviewComponent } from './rezepte-list-view/rezept-overview/rezept-overview.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ZutatenListeComponent,
     RezepteListViewComponent,
-    MenueBarComponent
+    MenueBarComponent,
+    RezeptOverviewComponent
   ],
   imports: [
     BrowserModule,

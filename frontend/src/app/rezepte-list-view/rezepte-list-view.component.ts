@@ -9,18 +9,25 @@ import {RezeptService} from '../services/rezept.service';
 })
 export class RezepteListViewComponent implements OnInit {
 
-  rezepte: string[]
+  rezepte: string[];
+  currentPosition: number;
 
   constructor(
     private route: ActivatedRoute,
     private rezepteService: RezeptService
-  ) { }
+  ) {
+    this.currentPosition = 0;
+  }
 
   ngOnInit(): void {
     this.route.queryParamMap.subscribe(map => {
       const zutaten = map.getAll('ingredients');
       this.rezepteService.getRezept(zutaten).subscribe(rez => this.rezepte = rez);
     });
+  }
+
+  onRecipeDiscarded(): void {
+    this.currentPosition++;
   }
 
 }
