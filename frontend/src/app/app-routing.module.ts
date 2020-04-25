@@ -5,9 +5,10 @@ import {ZutatenListeComponent} from './zutaten-liste/zutaten-liste.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'zutaten', pathMatch: 'full'},
-  {path: '**', redirectTo: 'zutaten'},
   {path: 'zutaten', component: ZutatenListeComponent},
-  {path: 'rezepte/:inhalt', component: RezeptViewComponent}
+  {path: 'recipe', component: RezeptViewComponent},
+  {path: 'recipe/search', component: RezeptViewComponent},
+  {path: '**', redirectTo: 'zutaten'}
 ];
 
 @NgModule({

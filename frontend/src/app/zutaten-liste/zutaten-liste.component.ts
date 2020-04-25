@@ -69,7 +69,7 @@ export class ZutatenListeComponent implements OnInit, AfterViewChecked {
 
   toRezept(){
     if (this.selectedZutaten.map<boolean>(zutat => this.zutaten.includes(zutat)).reduce((first, second) => first && second)){
-      this.router.navigate([RezeptViewComponent.ri + JSON.stringify(this.selectedZutaten)]);
+      this.router.navigate([RezeptViewComponent.ri]);
     }
     else {
       console.log('Es wurd eine nicht existente Zutat ausgewählt');
