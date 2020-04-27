@@ -7,11 +7,19 @@ import {RezeptService} from '../services/rezept.service';
   templateUrl: './rezepte-list-view.component.html',
   styleUrls: ['./rezepte-list-view.component.css']
 })
+/**
+ * Komponente zur Anzeige einer Menge von Rezepten
+ */
 export class RezepteListViewComponent implements OnInit {
 
   rezepte: string[];
   currentPosition: number;
 
+  /**
+   * Konstruktor
+   * @param route Routekomponente zur Extraction von URI-Parametern
+   * @param rezepteService Service zur Ermittlung passender Rezepte
+   */
   constructor(
     private route: ActivatedRoute,
     private rezepteService: RezeptService
@@ -26,6 +34,9 @@ export class RezepteListViewComponent implements OnInit {
     });
   }
 
+  /**
+   * Reaktion auf die Ablehnung eines Rezeptes
+   */
   onRecipeDiscarded(): void {
     this.currentPosition++;
   }
