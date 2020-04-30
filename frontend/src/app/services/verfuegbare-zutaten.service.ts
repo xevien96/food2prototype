@@ -13,7 +13,7 @@ export class VerfuegbareZutatenService {
   private zutaten: string[];
 
   constructor() {
-    this.zutaten = ['Ei', 'Mehl', 'Milch', 'Paniermehl', 'Fleisch', 'Fisch', 'Spinat'];
+    this.zutaten = ['Eier', 'Mehl', 'Milch', 'Paniermehl', 'Fleisch', 'Fisch', 'Spinat'];
   }
 
   /**

@@ -10,7 +10,7 @@ import {Observable, of} from 'rxjs';
  */
 export class RezeptService {
 
-  private readonly rezeptUrl: string = 'recipe';
+  private readonly rezeptUrl: string = 'http://localhost:8080/recipe';
 
   /**
    * Konstruktor
@@ -25,7 +25,7 @@ export class RezeptService {
    * @param zutaten Liste der Zutaten die enthalten sein sollen
    */
   getRezept(zutaten: string[]): Observable<string[]> {
-    // return this.client.get<string[]>(this.rezeptUrl + '/search', {params: {ingredients: zutaten}});
-    return of(['Kuchen', 'Pfannkuchen']);
+    return this.client.get<string[]>(this.rezeptUrl + '/search', {params: {ingredients: zutaten}});
+    //return of(['Kuchen', 'Pfannkuchen']);
   }
 }

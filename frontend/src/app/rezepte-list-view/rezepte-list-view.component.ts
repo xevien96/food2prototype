@@ -25,6 +25,7 @@ export class RezepteListViewComponent implements OnInit {
     private rezepteService: RezeptService
   ) {
     this.currentPosition = 0;
+    this.rezepte = [];
   }
 
   ngOnInit(): void {
