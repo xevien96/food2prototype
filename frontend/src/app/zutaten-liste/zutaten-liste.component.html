@@ -11,8 +11,10 @@
         </mat-select>
       </mat-form-field>
     </div>
-    <button mat-raised-button color="primary" (click)="addZutat()">+</button>
-    <button mat-raised-button color="warn" (click)="removeZutat()">-</button>
-    <button type="submit" mat-raised-button color="accent" (click)="toRezept()" [disabled]="!zutatenForm.valid">Suchen</button>
+    <div class="button-theme">
+      <button mat-raised-button color="primary" (click)="addZutat()">+</button>
+      <button mat-raised-button color="warn" (click)="removeZutat()">-</button>
+      <button type="submit" mat-raised-button color="accent" (click)="toRezept()" [disabled]="!zutatenForm.valid">Suchen</button>
+    </div>
   </div>
 </form>
