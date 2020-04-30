@@ -21,6 +21,8 @@ $frontend-warn: mat-palette($mat-light-green, 700);
 // Create the theme object (a Sass map containing all of the palettes).
 $frontend-theme: mat-light-theme($frontend-primary, $frontend-accent, $frontend-warn);
 
+$bg-color: map_get($mat-light-green, 50);
+
 .button-theme{
   $button-primary: mat-palette($mat-light-green);
   $button-accent: mat-palette($mat-gray);
