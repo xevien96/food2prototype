@@ -3,7 +3,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 @Component({
   selector: 'app-rezept-overview',
   templateUrl: './rezept-overview.component.html',
-  styleUrls: ['./rezept-overview.component.css']
+  styleUrls: ['./rezept-overview.component.scss']
 })
 /**
  * Komponente für einen Kurzüberblick über ein Rezept

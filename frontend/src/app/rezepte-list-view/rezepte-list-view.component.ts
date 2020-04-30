@@ -5,7 +5,7 @@ import {RezeptService} from '../services/rezept.service';
 @Component({
   selector: 'app-rezept-view',
   templateUrl: './rezepte-list-view.component.html',
-  styleUrls: ['./rezepte-list-view.component.css']
+  styleUrls: ['./rezepte-list-view.component.scss']
 })
 /**
  * Komponente zur Anzeige einer Menge von Rezepten

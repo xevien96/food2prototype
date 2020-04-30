@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-menue-bar',
   templateUrl: './menue-bar.component.html',
-  styleUrls: ['./menue-bar.component.css']
+  styleUrls: ['./menue-bar.component.scss']
 })
 /**
  * Komponente für eine Menübar

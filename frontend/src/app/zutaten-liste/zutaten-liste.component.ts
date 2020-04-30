@@ -8,7 +8,7 @@ import {query} from '@angular/animations';
 @Component({
   selector: 'app-zutaten-liste',
   templateUrl: './zutaten-liste.component.html',
-  styleUrls: ['./zutaten-liste.component.css']
+  styleUrls: ['./zutaten-liste.component.scss']
 })
 /**
  * Auswahlformular für Zutaten
