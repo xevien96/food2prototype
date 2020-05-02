@@ -1,5 +1,25 @@
+@import "../../util";
+@import "../../custom-theme";
+
+h1 {
+  @include stroke(1, mat-contrast($primary-palette, 50));
+  color: $logo-font-color;
+  font-family: 'Kristen ITC', 'Arial', 'sans-serif' !important;
+  font-size: 35pt !important;
+}
+
 .centered{
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+.left {
+  position: absolute;
+  top: 50%;
+  right: 0%;
+  margin-right: 0;
+  transform: translate(0, -50%);
 }

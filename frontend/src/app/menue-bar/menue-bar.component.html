@@ -1,11 +1,13 @@
 <mat-toolbar color="primary">
-  <h1 class="centered" style="font-family: 'Kristen ITC'; color: #ffff00; font-size: 35pt">Foodswipe</h1>
-  <button mat-icon-button [mat-menu-trigger-for]="menu" aria-label="Main menu">
-    <mat-icon>more_vert</mat-icon>
-  </button>
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item>
-      <span>Test</span>
+  <h1 class="logo centered">Foodswipe</h1>
+  <div class="left">
+    <button mat-icon-button [mat-menu-trigger-for]="menu" aria-label="Main menu">
+      <mat-icon>more_vert</mat-icon>
     </button>
-  </mat-menu>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <span>Test</span>
+      </button>
+    </mat-menu>
+  </div>
 </mat-toolbar>

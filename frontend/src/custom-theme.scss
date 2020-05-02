@@ -9,19 +9,23 @@
 // Be sure that you only ever include this mixin once!
 @include mat-core();
 
+$primary-palette: $mat-light-green;
+$secondary-palette: $mat-yellow;
+
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$frontend-primary: mat-palette($mat-light-green, 500);
-$frontend-accent: mat-palette($mat-light-green, 100);
+$frontend-primary: mat-palette($primary-palette, 500);
+$frontend-accent: mat-palette($secondary-palette, 500);
 
 // The warn palette is optional (defaults to red).
-$frontend-warn: mat-palette($mat-light-green, 700);
+$frontend-warn: mat-palette($mat-red, 700);
 
 // Create the theme object (a Sass map containing all of the palettes).
 $frontend-theme: mat-light-theme($frontend-primary, $frontend-accent, $frontend-warn);
 
-$bg-color: map_get($mat-light-green, 50);
+$bg-color: map_get($primary-palette, 50);
+$logo-font-color: map_get($secondary-palette, A200);
 
 .button-theme{
   $button-primary: mat-palette($mat-light-green);
