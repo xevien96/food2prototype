@@ -1,5 +1,5 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule, HAMMER_GESTURE_CONFIG, HammerGestureConfig, HammerModule} from '@angular/platform-browser';
+import {Injectable, NgModule} from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -16,6 +16,13 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
 import {ReactiveFormsModule} from '@angular/forms';
 import { RezeptOverviewComponent } from './rezepte-list-view/rezept-overview/rezept-overview.component';
+
+export class MyHammerCfg extends HammerGestureConfig {
+  overrides =  {
+    pinch: {enable: false},
+    rotate: {enable: false}
+  };
+}
 
 @NgModule({
   declarations: [
@@ -36,9 +43,15 @@ import { RezeptOverviewComponent } from './rezepte-list-view/rezept-overview/rez
     MatToolbarModule,
     MatMenuModule,
     MatIconModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HammerModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HAMMER_GESTURE_CONFIG,
+      useClass: MyHammerCfg
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
