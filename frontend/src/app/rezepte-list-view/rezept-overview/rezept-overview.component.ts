@@ -31,6 +31,7 @@ export class RezeptOverviewComponent implements OnInit {
   }
 
   swipe(action) {
+    console.log(this.rezeptName);
     if (action === this.SWIPE_ACTION.RIGHT) {
       this.onRecipeDiscarded();
     }
