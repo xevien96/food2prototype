@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {TouchDeviceDetectService} from '../../services/touch-device-detect.service';
 
 @Component({
   selector: 'app-rezept-overview',
@@ -20,7 +21,9 @@ export class RezeptOverviewComponent implements OnInit {
    */
   @Output() recipeDiscarded = new EventEmitter();
 
-  constructor() { }
+  constructor(
+    public touchDeviceService: TouchDeviceDetectService
+  ) { }
 
   ngOnInit(): void {
   }
