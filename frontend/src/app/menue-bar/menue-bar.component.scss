@@ -5,7 +5,7 @@ h1 {
   @include stroke(1, mat-contrast($primary-palette, 50));
   color: $logo-font-color;
   font-family: 'Kristen ITC', 'Arial', 'sans-serif' !important;
-  font-size: 35pt !important;
+  font-size: 250% !important;
 }
 
 .centered{
