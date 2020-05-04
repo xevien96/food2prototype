@@ -1,7 +1,5 @@
 <div (swiperight)="swipe($event.type)" *ngIf="rezeptName !== undefined">
-  <div style="height: 200px; width: 200px; border: black 1px solid">
-    <img src="./assets/img/{{rezeptName}}.jpg" alt="">
-  </div>
+  <img src="./assets/img/{{rezeptName}}.jpg" alt="Bild {{rezeptName}}">
   <p>{{rezeptName}}</p>
   <div *ngIf="!touchDeviceService.isTouchDevice()" class="button-theme">
     <button mat-flat-button color="primary">Beitreten</button>
