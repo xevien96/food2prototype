@@ -1,8 +1,14 @@
 <div (swipeleft)="onRecipeDiscarded()" *ngIf="rezeptName !== undefined">
+  <div *ngIf="isTouchDevice" class="button-theme transparent_accept right">
+
+  </div>
   <img src="./assets/img/{{rezeptName}}.jpg" alt="Bild {{rezeptName}}">
   <p>{{rezeptName}}</p>
-  <div *ngIf="!touchDeviceService.isTouchDevice()" class="button-theme">
+  <div *ngIf="!isTouchDevice" class="button-theme">
     <button mat-flat-button color="primary">Beitreten</button>
     <button mat-flat-button color="warn" (click)="onRecipeDiscarded()">Ablehnen</button>
+  </div>
+  <div *ngIf="isTouchDevice" class="button-theme transparent_deny left">
+
   </div>
 </div>

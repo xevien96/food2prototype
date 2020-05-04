@@ -21,13 +21,16 @@ export class RezeptOverviewComponent implements OnInit {
    */
   @Output() recipeDiscarded = new EventEmitter();
 
+  isTouchDevice: boolean;
+
   SWIPE_ACTION = {LEFT: 'swipeleft', RIGHT: 'swiperight'};
 
   constructor(
-    public touchDeviceService: TouchDeviceDetectService
+    private touchDeviceService: TouchDeviceDetectService
   ) { }
 
   ngOnInit(): void {
+    this.isTouchDevice = this.touchDeviceService.isTouchDevice();
   }
 
   /**

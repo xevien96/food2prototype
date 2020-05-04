@@ -19,3 +19,13 @@
 @mixin stroke($stroke, $color) {
   text-shadow: stroke($stroke, $color);
 }
+
+@function transparencyGradient($color, $startTransparency, $endTransparency, $direction){
+  $gradient: ();
+  $gradient: linear-gradient(to $direction, rgba($color, $startTransparency), rgba($color, $endTransparency));
+  @return $gradient;
+}
+
+@mixin transparencyGradient($color, $startTransparency, $endTransparency, $direction) {
+  background-image: transparencyGradient($color, $startTransparency, $endTransparency, $direction);
+}

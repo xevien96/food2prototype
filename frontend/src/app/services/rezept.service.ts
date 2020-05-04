@@ -27,7 +27,7 @@ export class RezeptService {
    */
   getRezept(zutaten: string[]): Observable<string[]> {
     return this.client.get<string[]>(this.rezeptUrl + '/search', {params: {ingredients: zutaten}}).pipe(
-      catchError(this.handleError(`load recipe for ing: ${zutaten}`, []))
+      catchError(this.handleError(`load recipe for ing: ${zutaten}`, ['Pfannkuchen']))
     );
   }
 

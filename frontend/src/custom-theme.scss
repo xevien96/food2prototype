@@ -4,6 +4,8 @@
 @import '~@angular/material/theming';
 // Plus imports for other components in your app.
 
+@import "util";
+
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
@@ -11,6 +13,10 @@
 
 $primary-palette: $mat-light-green;
 $secondary-palette: $mat-yellow;
+
+$button-primary: mat-palette($mat-light-green);
+$button-accent: mat-palette($mat-gray);
+$button-warn: mat-palette($mat-red);
 
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
@@ -28,10 +34,6 @@ $bg-color: map_get($primary-palette, 50);
 $logo-font-color: map_get($secondary-palette, A200);
 
 .button-theme{
-  $button-primary: mat-palette($mat-light-green);
-  $button-accent: mat-palette($mat-gray);
-  $button-warn: mat-palette($mat-red);
-
   $button-theme: mat-light-theme($button-primary, $button-accent, $button-warn);
 
   @include angular-material-theme($button-theme);
