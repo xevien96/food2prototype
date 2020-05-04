@@ -1,7 +1,12 @@
 <mat-toolbar color="primary">
-  <h1 class="logo centered">Foodswipe</h1>
   <div class="left">
-    <button mat-icon-button [mat-menu-trigger-for]="menu" aria-label="Main menu">
+    <button mat-icon-button aria-label="go-back" (click)="goBack()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+  </div>
+  <h1 class="logo centered">Foodswipe</h1>
+  <div class="right">
+    <button mat-icon-button [mat-menu-trigger-for]="menu" aria-label="Main-menu">
       <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
