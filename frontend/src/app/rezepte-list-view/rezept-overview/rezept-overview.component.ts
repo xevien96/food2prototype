@@ -30,13 +30,6 @@ export class RezeptOverviewComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  swipe(action) {
-    console.log(this.rezeptName);
-    if (action === this.SWIPE_ACTION.RIGHT) {
-      this.onRecipeDiscarded();
-    }
-  }
-
   /**
    * Ablehnen eines Rezeptes
    */
