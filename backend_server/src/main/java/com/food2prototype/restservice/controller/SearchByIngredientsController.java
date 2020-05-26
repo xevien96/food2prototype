@@ -1,6 +1,7 @@
 package com.food2prototype.restservice.controller;
 
 import com.food2prototype.restservice.model.MockDB;
+import com.food2prototype.restservice.model.Rezept;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,14 +9,16 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 public class SearchByIngredientsController {
 
     @GetMapping("/recipe/search")
     public String[] searchByIngredients(@RequestParam(value = "ingredients") String[] values) {
-        List<String> recipes = MockDB.getRecipesContaining(values);
+        List<Rezept> recipes = MockDB.getAllRecipes();
+        List<String> recipeName = recipes.stream().map(rezept -> rezept.getName()).collect(Collectors.toList());
         String[] ret = new String[recipes.size()];
-        return recipes.toArray(ret);
+        return recipeName.toArray(ret);
     }
 }
