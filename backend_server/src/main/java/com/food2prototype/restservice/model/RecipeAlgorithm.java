@@ -11,10 +11,10 @@ public class RecipeAlgorithm {
   }
 
   private static int getNotUsedIngredientsScore(Rezept recipe, List<String> userIngredients) {
-    return userIngredients.size() - recipe.containsIngredients(userIngredients);
+    return userIngredients.size() - recipe.getNumberOfUsedIngredients(userIngredients);
   }
 
   private static int getUsedIngredientsScore(Rezept recipe, List<String> userIngredients) {
-    return recipe.containsIngredients(userIngredients);
+    return recipe.getNumberOfUsedIngredients(userIngredients);
   }
 }

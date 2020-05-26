@@ -3,6 +3,7 @@ package com.food2prototype.restservice.model;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class MockDB {
   public static final org.slf4j.Logger logger =
@@ -36,6 +37,15 @@ public class MockDB {
       Rezept r = new Rezept(name, Arrays.asList(values));
       result.add(r);
     }
+    return result;
+  }
+
+  public static List<Rezept> getAllRecipesContainingAtLeastOneIngredient(List<String> userIngredients){
+    List<Rezept> allRecipes = getAllRecipes();
+    List<Rezept> result;
+    result = allRecipes.stream()
+      .filter(rezept -> rezept.getNumberOfUsedIngredients(userIngredients) > 0)
+      .collect(Collectors.toList());
     return result;
   }
 }

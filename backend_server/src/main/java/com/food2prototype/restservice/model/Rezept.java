@@ -23,7 +23,7 @@ public class Rezept {
     return ingredients;
   }
 
-  public int containsIngredients(List<String> userIngredients) {
+  public int getNumberOfUsedIngredients(List<String> userIngredients) {
     List<String> usedUserIngredients = userIngredients.stream().filter(ing -> ingredients.contains(ing)).collect(Collectors.toList());
     return usedUserIngredients.size();
   }
