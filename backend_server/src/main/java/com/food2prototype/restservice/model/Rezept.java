@@ -1,6 +1,7 @@
 package com.food2prototype.restservice.model;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Rezept {
@@ -8,9 +9,9 @@ public class Rezept {
     org.slf4j.LoggerFactory.getLogger(Rezept.class);
 
   private String name;
-  private List<String> ingredients;
+  private Set<String> ingredients;
 
-  public Rezept(String name, List<String> ingredients) {
+  public Rezept(String name, Set<String> ingredients) {
     this.name = name;
     this.ingredients = ingredients;
   }
@@ -19,7 +20,7 @@ public class Rezept {
     return name;
   }
 
-  public List<String> getIngredients() {
+  public Set<String> getIngredients() {
     return ingredients;
   }
 
