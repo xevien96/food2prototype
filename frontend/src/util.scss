@@ -1,0 +1,31 @@
+/// Stroke font-character
+/// @param  {Integer} $stroke - Stroke width
+/// @param  {Color}   $color  - Stroke color
+/// @return {List}            - text-shadow list
+@function stroke($stroke, $color) {
+  $shadow: ();
+  $from: $stroke*-1;
+  @for $i from $from through $stroke {
+    @for $j from $from through $stroke {
+      $shadow: append($shadow, $i*1px $j*1px 0 $color, comma);
+    }
+  }
+  @return $shadow;
+}
+/// Stroke font-character
+/// @param  {Integer} $stroke - Stroke width
+/// @param  {Color}   $color  - Stroke color
+/// @return {Style}           - text-shadow
+@mixin stroke($stroke, $color) {
+  text-shadow: stroke($stroke, $color);
+}
+
+@function transparencyGradient($color, $startTransparency, $endTransparency, $direction){
+  $gradient: ();
+  $gradient: linear-gradient(to $direction, rgba($color, $startTransparency), rgba($color, $endTransparency));
+  @return $gradient;
+}
+
+@mixin transparencyGradient($color, $startTransparency, $endTransparency, $direction) {
+  background-image: transparencyGradient($color, $startTransparency, $endTransparency, $direction);
+}

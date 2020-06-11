@@ -4,22 +4,40 @@
 @import '~@angular/material/theming';
 // Plus imports for other components in your app.
 
+@import "util";
+
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
 @include mat-core();
 
+$primary-palette: $mat-light-green;
+$secondary-palette: $mat-yellow;
+
+$button-primary: mat-palette($mat-light-green);
+$button-accent: mat-palette($mat-gray);
+$button-warn: mat-palette($mat-red);
+
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$frontend-primary: mat-palette($mat-indigo);
-$frontend-accent: mat-palette($mat-pink, A200, A100, A400);
+$frontend-primary: mat-palette($primary-palette, 500);
+$frontend-accent: mat-palette($secondary-palette, 500);
 
 // The warn palette is optional (defaults to red).
-$frontend-warn: mat-palette($mat-red);
+$frontend-warn: mat-palette($mat-red, 700);
 
 // Create the theme object (a Sass map containing all of the palettes).
 $frontend-theme: mat-light-theme($frontend-primary, $frontend-accent, $frontend-warn);
+
+$bg-color: map_get($primary-palette, 50);
+$logo-font-color: map_get($secondary-palette, A200);
+
+.button-theme{
+  $button-theme: mat-light-theme($button-primary, $button-accent, $button-warn);
+
+  @include angular-material-theme($button-theme);
+}
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component

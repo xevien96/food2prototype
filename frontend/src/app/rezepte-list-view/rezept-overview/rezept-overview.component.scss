@@ -1,0 +1,42 @@
+@import "../../../custom-theme";
+@import "../../../util";
+
+$height_swipeBox: 100%;
+$width_swipeBox: 10vw;
+$start_trans_grad: 0;
+$end_trans_grad: 0.5;
+$translate_swipeBox: $width_swipeBox + 5;
+$img_max_width: 100vw - ($translate_swipeBox * 2);
+
+img {
+  max-height: 75vh;
+  max-width: $img_max_width;
+}
+
+.transparent_accept {
+  height: $height_swipeBox;
+  width: $width_swipeBox;
+  @include transparencyGradient(mat-color($button-primary), $start_trans_grad, $end_trans_grad, right)
+}
+
+.transparent_deny {
+  height: $height_swipeBox;
+  width: $width_swipeBox;
+  @include transparencyGradient(mat-color($button-warn), $start_trans_grad, $end_trans_grad, left)
+}
+
+.left {
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  margin-right: 0;
+  transform: translate(-$translate_swipeBox, -50%);
+}
+
+.right {
+  position: absolute;
+  top: 50%;
+  right: 0%;
+  margin-right: 0;
+  transform: translate($translate_swipeBox, -50%);
+}

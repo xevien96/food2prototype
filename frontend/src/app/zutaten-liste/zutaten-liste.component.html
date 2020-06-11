@@ -1,0 +1,20 @@
+<form [formGroup]="zutatenForm">
+  <div formArrayName="zutaten" #list>
+    <div *ngFor="let sel of selectedZutaten, let i = index">
+      <mat-form-field>
+        <mat-label>Wähle Zutat aus</mat-label>
+        <mat-select [formControlName]="i" (selectionChange)="setZutat(i, $event.value)" required>
+          <div *ngFor="let zutat of zutaten">
+            <mat-option [value]="zutat"
+                        *ngIf="zutat === selectedZutaten[i] || !selectedZutaten.includes(zutat)">{{zutat}}</mat-option>
+          </div>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="button-theme">
+      <button mat-raised-button color="primary" (click)="addZutat()">+</button>
+      <button mat-raised-button color="warn" (click)="removeZutat()">-</button>
+      <button type="submit" mat-raised-button color="accent" (click)="toRezept()" [disabled]="!zutatenForm.valid">Suchen</button>
+    </div>
+  </div>
+</form>
