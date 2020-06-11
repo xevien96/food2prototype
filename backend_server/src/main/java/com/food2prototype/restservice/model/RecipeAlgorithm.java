@@ -7,7 +7,7 @@ public class RecipeAlgorithm {
     org.slf4j.LoggerFactory.getLogger(RecipeAlgorithm.class);
 
   public static int getRating(Rezept recipe, List<String> userIngredients){
-    return getUsedIngredientsScore(recipe, userIngredients) + getNotUsedIngredientsScore(recipe, userIngredients);
+    return getUsedIngredientsScore(recipe, userIngredients) - getNotUsedIngredientsScore(recipe, userIngredients);
   }
 
   private static int getNotUsedIngredientsScore(Rezept recipe, List<String> userIngredients) {

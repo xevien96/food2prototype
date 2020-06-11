@@ -34,7 +34,9 @@ public class MockDB {
       String name = (String)obj;
       String ingredients = (String) db.get(name);
       String[] values = ingredients.split(",");
-      Rezept r = new Rezept(name, Arrays.asList(values));
+      Set<String> ingredientsSet = new HashSet<>();
+      ingredientsSet.addAll(Arrays.asList(values));
+      Rezept r = new Rezept(name, ingredientsSet);
       result.add(r);
     }
     return result;
