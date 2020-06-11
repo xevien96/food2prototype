@@ -15,6 +15,9 @@ public class RecipeAlgorithm {
       score += getNumberOfUsedGroupIngredientsAfterJoin(userIngredients, groupsWithRecipe.get(0));
       score -= getNumberOfMissingGroupIngredientsAfterJoin(userIngredients, groupsWithRecipe.get(0));
     }
+    else {
+      score -= getNumberOfNotUsedIngredientsInRecipe(recipe, userIngredients);
+    }
     score += getUsedIngredientsScore(recipe, userIngredients);
     score -= getNotUsedIngredientsScore(recipe, userIngredients);
     return score;
@@ -36,5 +39,11 @@ public class RecipeAlgorithm {
 
   private static int getUsedIngredientsScore(Recipe recipe, List<Ingredient> userIngredients) {
     return recipe.getNumberOfUsedIngredients(userIngredients);
+  }
+
+  private static int getNumberOfNotUsedIngredientsInRecipe(Recipe recipe, List<Ingredient> userIngredients){
+    Set<Ingredient> missingIngredients = recipe.getIngredients().stream().filter(ing -> !userIngredients.contains(ing))
+      .collect(Collectors.toSet());
+    return missingIngredients.size();
   }
 }
