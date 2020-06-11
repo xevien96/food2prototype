@@ -27,24 +27,24 @@ public class MockDB {
     }
   }
 
-  public static List<Rezept> getAllRecipes() {
+  public static List<Recipe> getAllRecipes() {
     readDB();
-    List<Rezept> result = new LinkedList<>();
+    List<Recipe> result = new LinkedList<>();
     for(Object obj : db.keySet()){
       String name = (String)obj;
       String ingredients = (String) db.get(name);
       String[] values = ingredients.split(",");
       Set<String> ingredientsSet = new HashSet<>();
       ingredientsSet.addAll(Arrays.asList(values));
-      Rezept r = new Rezept(name, ingredientsSet);
+      Recipe r = new Recipe(name, ingredientsSet);
       result.add(r);
     }
     return result;
   }
 
-  public static List<Rezept> getAllRecipesContainingAtLeastOneIngredient(List<String> userIngredients){
-    List<Rezept> allRecipes = getAllRecipes();
-    List<Rezept> result;
+  public static List<Recipe> getAllRecipesContainingAtLeastOneIngredient(List<String> userIngredients){
+    List<Recipe> allRecipes = getAllRecipes();
+    List<Recipe> result;
     result = allRecipes.stream()
       .filter(rezept -> rezept.getNumberOfUsedIngredients(userIngredients) > 0)
       .collect(Collectors.toList());

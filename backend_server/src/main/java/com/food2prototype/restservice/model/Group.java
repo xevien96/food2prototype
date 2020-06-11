@@ -9,18 +9,18 @@ import java.util.stream.Collectors;
 public class Group {
     private static List<Group> allGroups = new ArrayList<>();
 
-    private Rezept gruppenRezept;
+    private Recipe gruppenRezept;
     private Set<String> vorhandeneZutaten;
     private Set<String> user;
 
-    public Group(Rezept rezept) {
+    public Group(Recipe rezept) {
         gruppenRezept = rezept;
         vorhandeneZutaten = new HashSet<>();
         user = new HashSet<>();
         allGroups.add(this);
     }
 
-  public Rezept getGruppenRezept() {
+  public Recipe getGruppenRezept() {
     return gruppenRezept;
   }
 
@@ -32,7 +32,7 @@ public class Group {
     return user;
   }
 
-  public static List<Group> getAllGroupsforRecipe(Rezept rezept) {
+  public static List<Group> getAllGroupsforRecipe(Recipe rezept) {
         List<Group> groupsWithRecipe = new ArrayList<>();
         for(Group group : allGroups) {
             if (group.gruppenRezept.equals(rezept)) {

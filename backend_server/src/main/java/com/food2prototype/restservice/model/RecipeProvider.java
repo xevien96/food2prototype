@@ -9,18 +9,18 @@ public class RecipeProvider {
   public static final org.slf4j.Logger logger =
     org.slf4j.LoggerFactory.getLogger(RecipeProvider.class);
 
-  public static List<Rezept> getRecipesForIngredients(List<String> userIngredients){
-    List<Rezept> sensibleRecipes = MockDB.getAllRecipesContainingAtLeastOneIngredient(userIngredients);
+  public static List<Recipe> getRecipesForIngredients(List<String> userIngredients){
+    List<Recipe> sensibleRecipes = MockDB.getAllRecipesContainingAtLeastOneIngredient(userIngredients);
 
     List<ScoredRecipe> scoredRecipes = new LinkedList<>();
-    for(Rezept r : sensibleRecipes){
+    for(Recipe r : sensibleRecipes){
       List<Group> groupsWithRecipe = Group.getAllGroupsforRecipe(r);
       int score = RecipeAlgorithm.getRating(r, userIngredients, groupsWithRecipe);
       ScoredRecipe sr = new ScoredRecipe(score, r);
       scoredRecipes.add(sr);
     }
 
-    List<Rezept> result = scoredRecipes.stream()
+    List<Recipe> result = scoredRecipes.stream()
       .sorted(Comparator.comparing(scoredRecipe -> scoredRecipe.score))
       .map(scoredRecipe -> scoredRecipe.recipe)
       .collect(Collectors.toList());
@@ -30,9 +30,9 @@ public class RecipeProvider {
 
   private static class ScoredRecipe {
     public int score;
-    public Rezept recipe;
+    public Recipe recipe;
 
-    public ScoredRecipe(int score, Rezept recipe) {
+    public ScoredRecipe(int score, Recipe recipe) {
       this.score = score;
       this.recipe = recipe;
     }

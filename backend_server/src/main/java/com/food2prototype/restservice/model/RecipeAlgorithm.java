@@ -8,7 +8,7 @@ public class RecipeAlgorithm {
   public static final org.slf4j.Logger logger =
     org.slf4j.LoggerFactory.getLogger(RecipeAlgorithm.class);
 
-  public static int getRating(Rezept recipe, List<String> userIngredients, List<Group> groupsWithRecipe){
+  public static int getRating(Recipe recipe, List<String> userIngredients, List<Group> groupsWithRecipe){
     int score = 0;
     if(groupsWithRecipe.size() > 0){
       score = 5;
@@ -30,11 +30,11 @@ public class RecipeAlgorithm {
     return missingIngredientsAfterJoin.size();
   }
 
-  private static int getNotUsedIngredientsScore(Rezept recipe, List<String> userIngredients) {
+  private static int getNotUsedIngredientsScore(Recipe recipe, List<String> userIngredients) {
     return userIngredients.size() - recipe.getNumberOfUsedIngredients(userIngredients);
   }
 
-  private static int getUsedIngredientsScore(Rezept recipe, List<String> userIngredients) {
+  private static int getUsedIngredientsScore(Recipe recipe, List<String> userIngredients) {
     return recipe.getNumberOfUsedIngredients(userIngredients);
   }
 }
