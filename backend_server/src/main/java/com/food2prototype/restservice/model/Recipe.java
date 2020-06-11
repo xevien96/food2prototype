@@ -1,11 +1,13 @@
 package com.food2prototype.restservice.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Recipe {
+
   public static final org.slf4j.Logger logger =
     org.slf4j.LoggerFactory.getLogger(Recipe.class);
 
