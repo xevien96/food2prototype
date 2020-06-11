@@ -9,17 +9,23 @@ public class MockDB {
   public static final org.slf4j.Logger logger =
     org.slf4j.LoggerFactory.getLogger(MockDB.class);
 
-  private static Properties db;
+  private static Properties recipes;
+  private static Properties ingredients;
 
   public MockDB() {
     readDB();
   }
 
   public static void readDB() {
-    db = new Properties();
-    try (InputStream i = MockDB.class.getClassLoader().getResourceAsStream("DB.properties")){
-      if(i != null) {
-        db.load(i);
+    recipes = new Properties();
+    ingredients = new Properties();
+    try (InputStream recipeStream = MockDB.class.getClassLoader().getResourceAsStream("Recipes.properties");
+         InputStream ingredientsStream = MockDB.class.getClassLoader().getResourceAsStream("Ingredients.properties")){
+      if(recipeStream != null) {
+        recipes.load(recipeStream);
+      }
+      if(ingredientsStream != null){
+        ingredients.load(ingredientsStream);
       }
     }
     catch(IOException e) {
@@ -29,14 +35,15 @@ public class MockDB {
 
   public static List<Recipe> getAllRecipes() {
     readDB();
+    initIngredients();
     List<Recipe> result = new LinkedList<>();
-    for(Object obj : db.keySet()){
+    for(Object obj : recipes.keySet()){
       String name = (String)obj;
-      String ingredients = (String) db.get(name);
+      String ingredients = (String) recipes.get(name);
       String[] values = ingredients.split(",");
       Set<Ingredient> ingredientsSet = new HashSet<>();
       for(String ingName : values){
-        ingredientsSet.add(new Ingredient(ingName, 1));
+        ingredientsSet.add(Ingredient.getIngredient(ingName));
       }
       Recipe r = new Recipe(name, ingredientsSet);
       result.add(r);
@@ -51,5 +58,13 @@ public class MockDB {
       .filter(rezept -> rezept.getNumberOfUsedIngredients(userIngredients) > 0)
       .collect(Collectors.toList());
     return result;
+  }
+
+  private static void initIngredients(){
+    for(Object obj : ingredients.keySet()){
+      String name = obj.toString();
+      double rarity = Double.parseDouble(ingredients.get(name).toString());
+      new Ingredient(name, rarity);
+    }
   }
 }
