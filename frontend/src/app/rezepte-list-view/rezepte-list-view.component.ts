@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router, ParamMap} from '@angular/router';
 import {RezeptService} from '../services/rezept.service';
+import {Recipe} from '../modell/recipe';
+import {GroupService} from '../services/group.service';
 
 @Component({
   selector: 'app-rezept-view',
@@ -12,7 +14,8 @@ import {RezeptService} from '../services/rezept.service';
  */
 export class RezepteListViewComponent implements OnInit {
 
-  rezepte: string[];
+  zutaten: string[];
+  rezepte: Recipe[];
   currentPosition: number;
 
   /**
@@ -22,7 +25,8 @@ export class RezepteListViewComponent implements OnInit {
    */
   constructor(
     private route: ActivatedRoute,
-    private rezepteService: RezeptService
+    private rezepteService: RezeptService,
+    private groupService: GroupService
   ) {
     this.currentPosition = 0;
     this.rezepte = [];
@@ -30,8 +34,8 @@ export class RezepteListViewComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParamMap.subscribe(map => {
-      const zutaten = map.getAll('ingredients');
-      this.rezepteService.getRezept(zutaten).subscribe(rez => this.rezepte = rez);
+      this.zutaten = map.getAll('ingredients');
+      this.rezepteService.getRezept(this.zutaten).subscribe(rez => this.rezepte = rez);
     });
   }
 
@@ -40,6 +44,11 @@ export class RezepteListViewComponent implements OnInit {
    */
   onRecipeDiscarded(): void {
     this.currentPosition++;
+  }
+
+  onRecipeApproved(rezept: Recipe): void {
+    this.groupService.putGroup(rezept, this.zutaten).subscribe();
+    console.log('Joined Group');
   }
 
 }

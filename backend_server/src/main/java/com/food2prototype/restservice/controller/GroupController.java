@@ -27,7 +27,7 @@ public class GroupController {
     if(allGroupsForRecipe.size() > 0){
       allGroupsForRecipe.get(0).addUserToGroup("", userIngredients);
     }
-    else{
+    else {
       Group newGroup = new Group(recipe);
       newGroup.addUserToGroup("", userIngredients);
     }
