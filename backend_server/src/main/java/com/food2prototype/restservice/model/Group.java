@@ -10,7 +10,7 @@ public class Group {
     private static List<Group> allGroups = new ArrayList<>();
 
     private Recipe gruppenRezept;
-    private Set<String> vorhandeneZutaten;
+    private Set<Ingredient> vorhandeneZutaten;
     private Set<String> user;
 
     public Group(Recipe rezept) {
@@ -24,7 +24,7 @@ public class Group {
     return gruppenRezept;
   }
 
-  public Set<String> getVorhandeneZutaten() {
+  public Set<Ingredient> getVorhandeneZutaten() {
     return vorhandeneZutaten;
   }
 
@@ -42,10 +42,10 @@ public class Group {
         return groupsWithRecipe;
     }
 
-    public void addUserToGroup(String user, Set<String> userZutaten) {
+    public void addUserToGroup(String user, Set<Ingredient> userZutaten) {
         this.user.add(user);
-        Set<String> nutzbareZutaten = new HashSet<>();
-        for (String zutat : userZutaten) {
+        Set<Ingredient> nutzbareZutaten = new HashSet<>();
+        for (Ingredient zutat : userZutaten) {
             if (gruppenRezept.getIngredients().contains(zutat)) {
                 nutzbareZutaten.add(zutat);
             }
@@ -53,8 +53,8 @@ public class Group {
         vorhandeneZutaten.addAll(nutzbareZutaten);
     }
 
-    public Set<String> getNichtVorhandeneZutaten() {
-        Set<String> nichtVorhandeneZutaten = new HashSet<>();
+    public Set<Ingredient> getNichtVorhandeneZutaten() {
+        Set<Ingredient> nichtVorhandeneZutaten = new HashSet<>();
         nichtVorhandeneZutaten = gruppenRezept.getIngredients().stream().filter(ing -> !vorhandeneZutaten.contains(ing))
                 .collect(Collectors.toSet());
         return nichtVorhandeneZutaten;

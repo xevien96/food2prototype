@@ -34,15 +34,17 @@ public class MockDB {
       String name = (String)obj;
       String ingredients = (String) db.get(name);
       String[] values = ingredients.split(",");
-      Set<String> ingredientsSet = new HashSet<>();
-      ingredientsSet.addAll(Arrays.asList(values));
+      Set<Ingredient> ingredientsSet = new HashSet<>();
+      for(String ingName : values){
+        ingredientsSet.add(new Ingredient(ingName, 1));
+      }
       Recipe r = new Recipe(name, ingredientsSet);
       result.add(r);
     }
     return result;
   }
 
-  public static List<Recipe> getAllRecipesContainingAtLeastOneIngredient(List<String> userIngredients){
+  public static List<Recipe> getAllRecipesContainingAtLeastOneIngredient(List<Ingredient> userIngredients){
     List<Recipe> allRecipes = getAllRecipes();
     List<Recipe> result;
     result = allRecipes.stream()

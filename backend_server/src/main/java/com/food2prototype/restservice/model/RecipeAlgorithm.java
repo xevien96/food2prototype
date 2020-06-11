@@ -8,7 +8,7 @@ public class RecipeAlgorithm {
   public static final org.slf4j.Logger logger =
     org.slf4j.LoggerFactory.getLogger(RecipeAlgorithm.class);
 
-  public static int getRating(Recipe recipe, List<String> userIngredients, List<Group> groupsWithRecipe){
+  public static int getRating(Recipe recipe, List<Ingredient> userIngredients, List<Group> groupsWithRecipe){
     int score = 0;
     if(groupsWithRecipe.size() > 0){
       score = 5;
@@ -20,21 +20,21 @@ public class RecipeAlgorithm {
     return score;
   }
 
-  private static int getNumberOfUsedGroupIngredientsAfterJoin(List<String> userIngredients, Group group){
+  private static int getNumberOfUsedGroupIngredientsAfterJoin(List<Ingredient> userIngredients, Group group){
     return group.getGruppenRezept().getIngredients().size() - getNumberOfMissingGroupIngredientsAfterJoin(userIngredients, group);
   }
 
-  private static int getNumberOfMissingGroupIngredientsAfterJoin(List<String> userIngredients, Group group){
-    Set<String> missingIngredients = group.getNichtVorhandeneZutaten();
-    Set<String> missingIngredientsAfterJoin = missingIngredients.stream().filter(ing -> userIngredients.contains(ing)).collect(Collectors.toSet());
+  private static int getNumberOfMissingGroupIngredientsAfterJoin(List<Ingredient> userIngredients, Group group){
+    Set<Ingredient> missingIngredients = group.getNichtVorhandeneZutaten();
+    Set<Ingredient> missingIngredientsAfterJoin = missingIngredients.stream().filter(ing -> userIngredients.contains(ing)).collect(Collectors.toSet());
     return missingIngredientsAfterJoin.size();
   }
 
-  private static int getNotUsedIngredientsScore(Recipe recipe, List<String> userIngredients) {
+  private static int getNotUsedIngredientsScore(Recipe recipe, List<Ingredient> userIngredients) {
     return userIngredients.size() - recipe.getNumberOfUsedIngredients(userIngredients);
   }
 
-  private static int getUsedIngredientsScore(Recipe recipe, List<String> userIngredients) {
+  private static int getUsedIngredientsScore(Recipe recipe, List<Ingredient> userIngredients) {
     return recipe.getNumberOfUsedIngredients(userIngredients);
   }
 }

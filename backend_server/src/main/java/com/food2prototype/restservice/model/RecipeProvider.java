@@ -9,7 +9,7 @@ public class RecipeProvider {
   public static final org.slf4j.Logger logger =
     org.slf4j.LoggerFactory.getLogger(RecipeProvider.class);
 
-  public static List<Recipe> getRecipesForIngredients(List<String> userIngredients){
+  public static List<Recipe> getRecipesForIngredients(List<Ingredient> userIngredients){
     List<Recipe> sensibleRecipes = MockDB.getAllRecipesContainingAtLeastOneIngredient(userIngredients);
 
     List<ScoredRecipe> scoredRecipes = new LinkedList<>();

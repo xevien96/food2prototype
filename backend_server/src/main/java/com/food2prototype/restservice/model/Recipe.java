@@ -10,9 +10,9 @@ public class Recipe {
     org.slf4j.LoggerFactory.getLogger(Recipe.class);
 
   private String name;
-  private Set<String> ingredients;
+  private Set<Ingredient> ingredients;
 
-  public Recipe(String name, Set<String> ingredients) {
+  public Recipe(String name, Set<Ingredient> ingredients) {
     this.name = name;
     this.ingredients = ingredients;
   }
@@ -21,12 +21,12 @@ public class Recipe {
     return name;
   }
 
-  public Set<String> getIngredients() {
+  public Set<Ingredient> getIngredients() {
     return ingredients;
   }
 
-  public int getNumberOfUsedIngredients(List<String> userIngredients) {
-    List<String> usedUserIngredients = userIngredients.stream().filter(ing -> ingredients.contains(ing)).collect(Collectors.toList());
+  public int getNumberOfUsedIngredients(List<Ingredient> userIngredients) {
+    List<Ingredient> usedUserIngredients = userIngredients.stream().filter(ing -> ingredients.contains(ing)).collect(Collectors.toList());
     return usedUserIngredients.size();
   }
 
