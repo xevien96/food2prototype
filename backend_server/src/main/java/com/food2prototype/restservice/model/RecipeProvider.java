@@ -21,7 +21,7 @@ public class RecipeProvider {
     }
 
     List<Recipe> result = scoredRecipes.stream()
-      .sorted(Comparator.comparing(scoredRecipe -> scoredRecipe.score))
+      .sorted(Comparator.comparing(ScoredRecipe::getScore).reversed())
       .map(scoredRecipe -> scoredRecipe.recipe)
       .collect(Collectors.toList());
 
@@ -35,6 +35,10 @@ public class RecipeProvider {
     public ScoredRecipe(int score, Recipe recipe) {
       this.score = score;
       this.recipe = recipe;
+    }
+
+    public int getScore(){
+      return score;
     }
   }
 }
