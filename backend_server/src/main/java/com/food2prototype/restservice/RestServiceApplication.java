@@ -1,5 +1,6 @@
 package com.food2prototype.restservice;
 
+import com.food2prototype.restservice.model.MockDB;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -10,6 +11,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class RestServiceApplication {
     public static void main(String[] args) {
         SpringApplication.run(RestServiceApplication.class, args);
+        MockDB.readDB();
+        MockDB.initIngredients();
     }
 
     @Bean

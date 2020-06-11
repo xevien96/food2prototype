@@ -34,8 +34,6 @@ public class MockDB {
   }
 
   public static List<Recipe> getAllRecipes() {
-    readDB();
-    initIngredients();
     List<Recipe> result = new LinkedList<>();
     for(Object obj : recipes.keySet()){
       String name = (String)obj;
@@ -60,7 +58,7 @@ public class MockDB {
     return result;
   }
 
-  private static void initIngredients(){
+  public static void initIngredients(){
     for(Object obj : ingredients.keySet()){
       String name = obj.toString();
       double rarity = Double.parseDouble(ingredients.get(name).toString());
