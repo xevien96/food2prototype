@@ -26,7 +26,8 @@ export class RezepteListViewComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private rezepteService: RezeptService,
-    private groupService: GroupService
+    private groupService: GroupService,
+    private router: Router
   ) {
     this.currentPosition = 0;
     this.rezepte = [];
@@ -47,8 +48,9 @@ export class RezepteListViewComponent implements OnInit {
   }
 
   onRecipeApproved(rezept: Recipe): void {
-    this.groupService.putGroup(rezept, this.zutaten).subscribe();
-    console.log('Joined Group');
+    this.groupService.putGroup(rezept, this.zutaten).subscribe(() => {
+      this.router.navigate(['zutaten']);
+    });
   }
 
 }
