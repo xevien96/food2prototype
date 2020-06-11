@@ -20,7 +20,19 @@ public class Group {
         allGroups.add(this);
     }
 
-    public static List<Group> getAllGroupsforRecipe(Rezept rezept) {
+  public Rezept getGruppenRezept() {
+    return gruppenRezept;
+  }
+
+  public Set<String> getVorhandeneZutaten() {
+    return vorhandeneZutaten;
+  }
+
+  public Set<String> getUser() {
+    return user;
+  }
+
+  public static List<Group> getAllGroupsforRecipe(Rezept rezept) {
         List<Group> groupsWithRecipe = new ArrayList<>();
         for(Group group : allGroups) {
             if (group.gruppenRezept.equals(rezept)) {

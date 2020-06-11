@@ -14,7 +14,8 @@ public class RecipeProvider {
 
     List<ScoredRecipe> scoredRecipes = new LinkedList<>();
     for(Rezept r : sensibleRecipes){
-      int score = RecipeAlgorithm.getRating(r, userIngredients);
+      List<Group> groupsWithRecipe = Group.getAllGroupsforRecipe(r);
+      int score = RecipeAlgorithm.getRating(r, userIngredients, groupsWithRecipe);
       ScoredRecipe sr = new ScoredRecipe(score, r);
       scoredRecipes.add(sr);
     }
