@@ -5,6 +5,7 @@ import {Observable, of} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {RecipeStub} from '../modell/recipe-stub';
 import {GroupStub} from '../modell/group-stub';
+import {Group} from '../modell/group';
 
 @Injectable({
   providedIn: 'root'
@@ -37,7 +38,7 @@ export class GroupService {
     return this.client.post<number>(this.groupURL + `/${group.groupID}`, userZutaten, this.httpOptions);
   }
 
-  public getGroup(id: number): Observable<any>{
+  public getGroup(id: number): Observable<Group>{
     return this.client.get(this.groupURL + `/${id}`);
   }
 
