@@ -14,7 +14,7 @@ public class Recipe {
 
   private String name;
   private Set<Ingredient> ingredients;
-  private final int ID;
+  public final int ID;
 
   public Recipe(String name, Set<Ingredient> ingredients) {
     this.name = name;

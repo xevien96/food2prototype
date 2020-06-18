@@ -17,14 +17,14 @@ import java.util.stream.Collectors;
 public class SearchByIngredientsController {
 
     @GetMapping("/recipe/search")
-    public Recipe[] searchByIngredients(@RequestParam(value = "ingredients") String[] values) {
+    public Integer[] searchByIngredients(@RequestParam(value = "ingredients") String[] values) {
         List<Ingredient> userIngredients = new LinkedList<>();
         for (String ingString : values){
             userIngredients.add(Ingredient.getIngredient(ingString));
         }
         List<Recipe> recipes = RecipeProvider.getRecipesForIngredients(userIngredients);
-        Recipe[] ret = new Recipe[recipes.size()];
-        return recipes.toArray(ret);
+        Integer[] ret = new Integer[recipes.size()];
+        return recipes.stream().map(recipe -> recipe.ID).collect(Collectors.toList()).toArray(ret);
     }
 
     @GetMapping("/recipe/{recipeID}")
