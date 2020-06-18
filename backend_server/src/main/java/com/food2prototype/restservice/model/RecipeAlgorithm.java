@@ -1,5 +1,8 @@
 package com.food2prototype.restservice.model;
 
+import com.food2prototype.restservice.model.stubs.RecipeStub;
+import com.food2prototype.restservice.model.stubs.ScoredRecipeStub;
+
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -8,8 +11,9 @@ public class RecipeAlgorithm {
   public static final org.slf4j.Logger logger =
     org.slf4j.LoggerFactory.getLogger(RecipeAlgorithm.class);
 
-  public static int getRating(Recipe recipe, List<Ingredient> userIngredients, List<Group> groupsWithRecipe){
+  public static ScoredRecipeStub getRating(Recipe recipe, List<Ingredient> userIngredients, List<Group> groupsWithRecipe){
     int score = 0;
+    RecipeStub stub = new RecipeStub(recipe.ID);
     if(groupsWithRecipe.size() > 0){
       score = 5;
       score += getNumberOfUsedGroupIngredientsAfterJoin(userIngredients, groupsWithRecipe.get(0));
@@ -20,7 +24,7 @@ public class RecipeAlgorithm {
     }
     score += getUsedIngredientsScore(recipe, userIngredients);
     score -= getNotUsedIngredientsScore(recipe, userIngredients);
-    return score;
+    return new ScoredRecipeStub(score, stub);
   }
 
   private static int getNumberOfUsedGroupIngredientsAfterJoin(List<Ingredient> userIngredients, Group group){
