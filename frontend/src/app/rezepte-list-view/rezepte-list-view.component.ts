@@ -4,8 +4,6 @@ import {RezeptService} from '../services/rezept.service';
 import {Recipe} from '../modell/recipe';
 import {GroupService} from '../services/group.service';
 import {RecipeStub} from '../modell/recipe-stub';
-import {AsyncPipe} from '@angular/common';
-import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-rezept-view',
@@ -49,8 +47,8 @@ export class RezepteListViewComponent implements OnInit {
     this.currentPosition++;
   }
 
-  onRecipeApproved(rezept: Recipe): void {
-    this.gruppenService.putGroup(rezept, this.zutaten).subscribe(() => {
+  onRecipeApproved(recipe: RecipeStub): void {
+    this.gruppenService.addUserToGroup(recipe, this.zutaten).subscribe(() => {
       this.router.navigate(['zutaten']);
     });
   }

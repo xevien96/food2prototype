@@ -3,6 +3,8 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Recipe} from '../modell/recipe';
 import {Observable, of} from 'rxjs';
 import {catchError} from 'rxjs/operators';
+import {RecipeStub} from '../modell/recipe-stub';
+import {GroupStub} from '../modell/group-stub';
 
 @Injectable({
   providedIn: 'root'
@@ -17,10 +19,22 @@ export class GroupService {
     private client: HttpClient
   ) { }
 
-  public putGroup(rezept: Recipe, userZutaten: string[]){
-    return this.client.put<any>(this.groupURL, {recipe: rezept, userIngredients: userZutaten}, this.httpOptions).pipe(
-      catchError(this.handleError(`join group for recipe ${rezept.name}`))
-    );
+  public addUserToGroup(recipe: RecipeStub | GroupStub, userZutaten: string[]): Observable<number | any>{
+    if ((recipe as GroupStub).groupID !== undefined){
+      const group = recipe as GroupStub;
+      return this.addToExistingGroup(group, userZutaten);
+    }
+    else {
+      return this.createNewGroup(recipe, userZutaten);
+    }
+  }
+
+  public createNewGroup(rezept: RecipeStub, userZutaten: string[]){
+    return this.client.post<any>(this.groupURL + `/recipe/${rezept.recipeID}`, userZutaten, this.httpOptions);
+  }
+
+  public addToExistingGroup(group: GroupStub, userZutaten: string[]){
+    return this.client.post<any>(this.groupURL + `/${group.groupID}`, userZutaten, this.httpOptions);
   }
 
   private handleError<T>(operation = 'operation', result?: T){

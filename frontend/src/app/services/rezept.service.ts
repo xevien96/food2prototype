@@ -4,6 +4,7 @@ import {Observable, of} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {Recipe} from '../modell/recipe';
 import {RecipeStub} from '../modell/recipe-stub';
+import {GroupStub} from '../modell/group-stub';
 
 @Injectable({
   providedIn: 'root'

@@ -26,7 +26,7 @@ export class RezeptOverviewComponent implements OnInit, OnChanges {
    */
   @Output() recipeDiscarded = new EventEmitter();
 
-  @Output() recipeApproved = new EventEmitter<Recipe>();
+  @Output() recipeApproved = new EventEmitter<RecipeStub>();
 
   isTouchDevice: boolean;
 
@@ -50,7 +50,7 @@ export class RezeptOverviewComponent implements OnInit, OnChanges {
   }
 
   onRecipeApproved(): void{
-    this.recipeApproved.emit(this.rezept);
+    this.recipeApproved.emit(this.rezeptStub);
   }
 
   /**
