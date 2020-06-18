@@ -32,7 +32,7 @@ public class GroupController {
   }
 
   @GetMapping("/group/{groupID}")
-  public Group getGroup(@PathVariable(value = "groupID") int ID){
+  public Group getGroup(@PathVariable(value = "groupID") int ID) {
     return Group.get(ID);
   }
 }
