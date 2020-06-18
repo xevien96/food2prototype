@@ -17,17 +17,16 @@ public class GroupController {
     org.slf4j.LoggerFactory.getLogger(GroupController.class);
 
   @PutMapping("/group/recipe/{recipeID}")
-  public ResponseEntity putGroup(@PathVariable(value = "recipeID") int ID, @RequestBody String[] userIngredientsNames){
+  public ResponseEntity putGroup(@PathVariable(value = "recipeID") int ID, @RequestBody String[] userIngredientsNames) {
     Recipe recipe = Recipe.get(ID);
     Set<Ingredient> userIngredients = new HashSet<>();
-    for (String ingString : userIngredientsNames){
+    for (String ingString : userIngredientsNames) {
       userIngredients.add(Ingredient.getIngredient(ingString));
     }
     List<Group> allGroupsForRecipe = Group.getAllGroupsforRecipe(recipe);
-    if(allGroupsForRecipe.size() > 0){
+    if (allGroupsForRecipe.size() > 0) {
       allGroupsForRecipe.get(0).addUserToGroup("", userIngredients);
-    }
-    else {
+    } else {
       Group newGroup = new Group(recipe);
       newGroup.addUserToGroup("", userIngredients);
     }

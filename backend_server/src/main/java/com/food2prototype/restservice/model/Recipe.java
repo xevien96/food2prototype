@@ -23,7 +23,7 @@ public class Recipe {
     allRecipes.put(ID, this);
   }
 
-  public static Recipe get(int id){
+  public static Recipe get(int id) {
     return allRecipes.get(id);
   }
 

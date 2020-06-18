@@ -10,19 +10,19 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
 public class RestServiceApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(RestServiceApplication.class, args);
-        MockDB.readDB();
-        MockDB.initIngredients();
-    }
+  public static void main(String[] args) {
+    SpringApplication.run(RestServiceApplication.class, args);
+    MockDB.readDB();
+    MockDB.initIngredients();
+  }
 
-    @Bean
-    public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedMethods("*").allowedOrigins("http://localhost:4200");
-            }
-        };
-    }
+  @Bean
+  public WebMvcConfigurer corsConfigurer() {
+    return new WebMvcConfigurer() {
+      @Override
+      public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**").allowedMethods("*").allowedOrigins("http://localhost:4200");
+      }
+    };
+  }
 }

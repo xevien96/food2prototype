@@ -9,11 +9,11 @@ public class RecipeProvider {
   public static final org.slf4j.Logger logger =
     org.slf4j.LoggerFactory.getLogger(RecipeProvider.class);
 
-  public static List<Recipe> getRecipesForIngredients(List<Ingredient> userIngredients){
+  public static List<Recipe> getRecipesForIngredients(List<Ingredient> userIngredients) {
     List<Recipe> sensibleRecipes = MockDB.getAllRecipesContainingAtLeastOneIngredient(userIngredients);
 
     List<ScoredRecipe> scoredRecipes = new LinkedList<>();
-    for(Recipe r : sensibleRecipes){
+    for (Recipe r : sensibleRecipes) {
       List<Group> groupsWithRecipe = Group.getAllGroupsforRecipe(r);
       int score = RecipeAlgorithm.getRating(r, userIngredients, groupsWithRecipe);
       ScoredRecipe sr = new ScoredRecipe(score, r);
@@ -37,7 +37,7 @@ public class RecipeProvider {
       this.recipe = recipe;
     }
 
-    public int getScore(){
+    public int getScore() {
       return score;
     }
   }

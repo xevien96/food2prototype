@@ -16,19 +16,19 @@ import java.util.stream.Collectors;
 @RestController
 public class SearchByIngredientsController {
 
-    @GetMapping("/recipe/search")
-    public Integer[] searchByIngredients(@RequestParam(value = "ingredients") String[] values) {
-        List<Ingredient> userIngredients = new LinkedList<>();
-        for (String ingString : values){
-            userIngredients.add(Ingredient.getIngredient(ingString));
-        }
-        List<Recipe> recipes = RecipeProvider.getRecipesForIngredients(userIngredients);
-        Integer[] ret = new Integer[recipes.size()];
-        return recipes.stream().map(recipe -> recipe.ID).collect(Collectors.toList()).toArray(ret);
+  @GetMapping("/recipe/search")
+  public Integer[] searchByIngredients(@RequestParam(value = "ingredients") String[] values) {
+    List<Ingredient> userIngredients = new LinkedList<>();
+    for (String ingString : values) {
+      userIngredients.add(Ingredient.getIngredient(ingString));
     }
+    List<Recipe> recipes = RecipeProvider.getRecipesForIngredients(userIngredients);
+    Integer[] ret = new Integer[recipes.size()];
+    return recipes.stream().map(recipe -> recipe.ID).collect(Collectors.toList()).toArray(ret);
+  }
 
-    @GetMapping("/recipe/{recipeID}")
-    public Recipe getRecipe(@PathVariable(value = "recipeID") int ID){
-        return Recipe.get(ID);
-    }
+  @GetMapping("/recipe/{recipeID}")
+  public Recipe getRecipe(@PathVariable(value = "recipeID") int ID) {
+    return Recipe.get(ID);
+  }
 }
