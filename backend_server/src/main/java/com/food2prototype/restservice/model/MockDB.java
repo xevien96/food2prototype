@@ -9,17 +9,23 @@ public class MockDB {
   public static final org.slf4j.Logger logger =
     org.slf4j.LoggerFactory.getLogger(MockDB.class);
 
-  private static Properties db;
+  private static Properties recipes;
+  private static Properties ingredients;
 
   public MockDB() {
     readDB();
   }
 
   public static void readDB() {
-    db = new Properties();
-    try (InputStream i = MockDB.class.getClassLoader().getResourceAsStream("DB.properties")){
-      if(i != null) {
-        db.load(i);
+    recipes = new Properties();
+    ingredients = new Properties();
+    try (InputStream recipeStream = MockDB.class.getClassLoader().getResourceAsStream("Recipes.properties");
+         InputStream ingredientsStream = MockDB.class.getClassLoader().getResourceAsStream("Ingredients.properties")){
+      if(recipeStream != null) {
+        recipes.load(recipeStream);
+      }
+      if(ingredientsStream != null){
+        ingredients.load(ingredientsStream);
       }
     }
     catch(IOException e) {
@@ -27,25 +33,36 @@ public class MockDB {
     }
   }
 
-  public static List<Rezept> getAllRecipes() {
-    readDB();
-    List<Rezept> result = new LinkedList<>();
-    for(Object obj : db.keySet()){
+  public static List<Recipe> getAllRecipes() {
+    List<Recipe> result = new LinkedList<>();
+    for(Object obj : recipes.keySet()){
       String name = (String)obj;
-      String ingredients = (String) db.get(name);
+      String ingredients = (String) recipes.get(name);
       String[] values = ingredients.split(",");
-      Rezept r = new Rezept(name, Arrays.asList(values));
+      Set<Ingredient> ingredientsSet = new HashSet<>();
+      for(String ingName : values){
+        ingredientsSet.add(Ingredient.getIngredient(ingName));
+      }
+      Recipe r = new Recipe(name, ingredientsSet);
       result.add(r);
     }
     return result;
   }
 
-  public static List<Rezept> getAllRecipesContainingAtLeastOneIngredient(List<String> userIngredients){
-    List<Rezept> allRecipes = getAllRecipes();
-    List<Rezept> result;
+  public static List<Recipe> getAllRecipesContainingAtLeastOneIngredient(List<Ingredient> userIngredients){
+    List<Recipe> allRecipes = getAllRecipes();
+    List<Recipe> result;
     result = allRecipes.stream()
       .filter(rezept -> rezept.getNumberOfUsedIngredients(userIngredients) > 0)
       .collect(Collectors.toList());
     return result;
+  }
+
+  public static void initIngredients(){
+    for(Object obj : ingredients.keySet()){
+      String name = obj.toString();
+      double rarity = Double.parseDouble(ingredients.get(name).toString());
+      new Ingredient(name, rarity);
+    }
   }
 }

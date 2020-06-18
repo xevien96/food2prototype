@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TouchDeviceDetectService} from '../../services/touch-device-detect.service';
+import {Recipe} from '../../modell/recipe';
 
 @Component({
   selector: 'app-rezept-overview',
@@ -14,12 +15,14 @@ export class RezeptOverviewComponent implements OnInit {
   /**
    * Name des anzuzeigenden Rezepts
    */
-  @Input('rezept') rezeptName: string;
+  @Input('rezept') rezept: Recipe;
 
   /**
    * @event Event das bei Ablehnung eines Rezeptes ausgelöst wird
    */
   @Output() recipeDiscarded = new EventEmitter();
+
+  @Output() recipeApproved = new EventEmitter<Recipe>();
 
   isTouchDevice: boolean;
 
@@ -31,6 +34,10 @@ export class RezeptOverviewComponent implements OnInit {
 
   ngOnInit(): void {
     this.isTouchDevice = this.touchDeviceService.isTouchDevice();
+  }
+
+  onRecipeApproved(): void{
+    this.recipeApproved.emit(this.rezept);
   }
 
   /**

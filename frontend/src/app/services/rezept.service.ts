@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {catchError} from 'rxjs/operators';
+import {Recipe} from '../modell/recipe';
 
 @Injectable({
   providedIn: 'root'
@@ -25,9 +26,9 @@ export class RezeptService {
    * Getter für Rezepte, die anhand einer Liste von Zutaten ermittelt werden soll
    * @param zutaten Liste der Zutaten die enthalten sein sollen
    */
-  getRezept(zutaten: string[]): Observable<string[]> {
-    return this.client.get<string[]>(this.rezeptUrl + '/search', {params: {ingredients: zutaten}}).pipe(
-      catchError(this.handleError(`load recipe for ing: ${zutaten}`, ['Pfannkuchen']))
+  getRezept(zutaten: string[]): Observable<Recipe[]> {
+    return this.client.get<Recipe[]>(this.rezeptUrl + '/search', {params: {ingredients: zutaten}}).pipe(
+      catchError(this.handleError(`load recipe for ing: ${zutaten}`, null))
     );
   }
 
