@@ -4,6 +4,7 @@ import com.food2prototype.restservice.model.Ingredient;
 import com.food2prototype.restservice.model.RecipeProvider;
 import com.food2prototype.restservice.model.Recipe;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,5 +25,10 @@ public class SearchByIngredientsController {
         List<Recipe> recipes = RecipeProvider.getRecipesForIngredients(userIngredients);
         Recipe[] ret = new Recipe[recipes.size()];
         return recipes.toArray(ret);
+    }
+
+    @GetMapping("/recipe/{recipeID}")
+    public Recipe getRecipe(@PathVariable(value = "recipeID") int ID){
+        return Recipe.get(ID);
     }
 }
