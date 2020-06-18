@@ -16,7 +16,6 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
 import {ReactiveFormsModule} from '@angular/forms';
 import { RezeptOverviewComponent } from './rezepte-list-view/rezept-overview/rezept-overview.component';
-import { GroupComponent } from './group/group.component';
 
 export class MyHammerCfg extends HammerGestureConfig {
   overrides =  {
@@ -31,8 +30,7 @@ export class MyHammerCfg extends HammerGestureConfig {
     ZutatenListeComponent,
     RezepteListViewComponent,
     MenueBarComponent,
-    RezeptOverviewComponent,
-    GroupComponent
+    RezeptOverviewComponent
   ],
   imports: [
     BrowserModule,

@@ -49,7 +49,7 @@ export class RezepteListViewComponent implements OnInit {
 
   onRecipeApproved(rezept: Recipe): void {
     this.groupService.putGroup(rezept, this.zutaten).subscribe(() => {
-      this.router.navigate(['group']);
+      this.router.navigate(['zutaten']);
     });
   }
 
