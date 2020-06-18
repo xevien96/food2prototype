@@ -1,5 +1,7 @@
 package com.food2prototype.restservice.model;
 
+import com.food2prototype.restservice.model.stubs.GroupStub;
+
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
@@ -46,6 +48,10 @@ public class Group {
 
   public Set<String> getUser() {
     return user;
+  }
+
+  public GroupStub toStub(){
+    return new GroupStub(this.gruppenRezept.ID, this.ID);
   }
 
   public void addUserToGroup(String user, Set<Ingredient> userZutaten) {

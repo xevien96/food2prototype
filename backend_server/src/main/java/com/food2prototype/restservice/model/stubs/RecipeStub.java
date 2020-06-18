@@ -1,0 +1,12 @@
+package com.food2prototype.restservice.model.stubs;
+
+public class RecipeStub {
+  public static final org.slf4j.Logger logger =
+    org.slf4j.LoggerFactory.getLogger(RecipeStub.class);
+
+  public final int recipeID;
+
+  public RecipeStub(int recipeID) {
+    this.recipeID = recipeID;
+  }
+}

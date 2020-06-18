@@ -1,5 +1,7 @@
 package com.food2prototype.restservice.model;
 
+import com.food2prototype.restservice.model.stubs.RecipeStub;
+
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
@@ -33,6 +35,10 @@ public class Recipe {
 
   public Set<Ingredient> getIngredients() {
     return ingredients;
+  }
+
+  public RecipeStub toStub(){
+    return new RecipeStub(this.ID);
   }
 
   public int getNumberOfUsedIngredients(List<Ingredient> userIngredients) {
