@@ -21,7 +21,7 @@ public class Recipe {
   public Recipe(String name, Set<Ingredient> ingredients) {
     this.name = name;
     this.ingredients = ingredients;
-    ID = idCounter.incrementAndGet();
+    ID = idCounter.getAndIncrement();
     allRecipes.put(ID, this);
   }
 

@@ -37,6 +37,10 @@ export class GroupService {
     return this.client.post<number>(this.groupURL + `/${group.groupID}`, userZutaten, this.httpOptions);
   }
 
+  public getGroup(id: number): Observable<any>{
+    return this.client.get(this.groupURL + `/${id}`);
+  }
+
   private handleError<T>(operation = 'operation', result?: T){
     return (error: any): Observable<T> => {
       console.error(error);

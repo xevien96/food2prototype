@@ -20,7 +20,7 @@ public class Group {
     gruppenRezept = rezept;
     vorhandeneZutaten = new HashSet<>();
     user = new HashSet<>();
-    ID = idCounter.incrementAndGet();
+    ID = idCounter.getAndIncrement();
     allGroups.put(ID, this);
   }
 
