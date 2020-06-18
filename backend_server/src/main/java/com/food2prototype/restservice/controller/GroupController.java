@@ -4,10 +4,7 @@ import com.food2prototype.restservice.model.Group;
 import com.food2prototype.restservice.model.Ingredient;
 import com.food2prototype.restservice.model.Recipe;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
@@ -31,5 +28,10 @@ public class GroupController {
       newGroup.addUserToGroup("", userIngredients);
     }
     return ResponseEntity.ok().build();
+  }
+
+  @GetMapping("/group/{groupID}")
+  public Group getGroup(@PathVariable(value = "groupID") int ID){
+    return Group.get(ID);
   }
 }
