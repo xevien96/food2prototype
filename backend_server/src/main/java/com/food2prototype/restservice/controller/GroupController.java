@@ -14,7 +14,7 @@ public class GroupController {
     org.slf4j.LoggerFactory.getLogger(GroupController.class);
 
   @PostMapping("/group/{groupID}")
-  public ResponseEntity addUser(@PathVariable(value = "groupID") int ID, @RequestBody String[] userIngredientsNames) {
+  public int addUser(@PathVariable(value = "groupID") int ID, @RequestBody String[] userIngredientsNames) {
     Recipe recipe = Recipe.get(ID);
     Set<Ingredient> userIngredients = new HashSet<>();
     for (String ingString : userIngredientsNames) {
@@ -22,7 +22,7 @@ public class GroupController {
     }
     Group group = Group.get(ID);
     group.addUserToGroup("", userIngredients);
-    return ResponseEntity.ok().build();
+    return group.ID;
   }
 
   @PostMapping("/group/recipe/{recipeID}")

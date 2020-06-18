@@ -19,7 +19,7 @@ export class GroupService {
     private client: HttpClient
   ) { }
 
-  public addUserToGroup(recipe: RecipeStub | GroupStub, userZutaten: string[]): Observable<number | any>{
+  public addUserToGroup(recipe: RecipeStub | GroupStub, userZutaten: string[]): Observable<number>{
     if ((recipe as GroupStub).groupID !== undefined){
       const group = recipe as GroupStub;
       return this.addToExistingGroup(group, userZutaten);
@@ -30,11 +30,11 @@ export class GroupService {
   }
 
   public createNewGroup(rezept: RecipeStub, userZutaten: string[]){
-    return this.client.post<any>(this.groupURL + `/recipe/${rezept.recipeID}`, userZutaten, this.httpOptions);
+    return this.client.post<number>(this.groupURL + `/recipe/${rezept.recipeID}`, userZutaten, this.httpOptions);
   }
 
   public addToExistingGroup(group: GroupStub, userZutaten: string[]){
-    return this.client.post<any>(this.groupURL + `/${group.groupID}`, userZutaten, this.httpOptions);
+    return this.client.post<number>(this.groupURL + `/${group.groupID}`, userZutaten, this.httpOptions);
   }
 
   private handleError<T>(operation = 'operation', result?: T){

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute, Route} from '@angular/router';
 
 @Component({
   selector: 'app-group',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GroupComponent implements OnInit {
 
-  constructor() { }
+  id: number;
+
+  constructor(
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
+    this.id = +this.route.snapshot.paramMap.get('groupID');
   }
 
 }

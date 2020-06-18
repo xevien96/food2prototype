@@ -48,8 +48,8 @@ export class RezepteListViewComponent implements OnInit {
   }
 
   onRecipeApproved(recipe: RecipeStub): void {
-    this.gruppenService.addUserToGroup(recipe, this.zutaten).subscribe(() => {
-      this.router.navigate(['zutaten']);
+    this.gruppenService.addUserToGroup(recipe, this.zutaten).subscribe(val => {
+      this.router.navigate([`group/${val}`]);
     });
   }
 
