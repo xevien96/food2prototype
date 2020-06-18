@@ -44,7 +44,7 @@ public class RecipeAlgorithm {
 
   private static int getNumberOfMissingGroupIngredientsAfterJoin(List<Ingredient> userIngredients, Group group){
     Set<Ingredient> missingIngredients = group.getNichtVorhandeneZutaten();
-    Set<Ingredient> missingIngredientsAfterJoin = missingIngredients.stream().filter(ing -> userIngredients.contains(ing)).collect(Collectors.toSet());
+    Set<Ingredient> missingIngredientsAfterJoin = missingIngredients.stream().filter(ing -> !userIngredients.contains(ing)).collect(Collectors.toSet());
     return missingIngredientsAfterJoin.size();
   }
 

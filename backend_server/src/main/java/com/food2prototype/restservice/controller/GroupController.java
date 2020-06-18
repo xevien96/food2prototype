@@ -21,7 +21,7 @@ public class GroupController {
       userIngredients.add(Ingredient.getIngredient(ingString));
     }
     Group group = Group.get(ID);
-    group.addUserToGroup("", userIngredients);
+    group.addUserToGroup("user" + Math.random(), userIngredients);
     return group.ID;
   }
 
@@ -33,7 +33,7 @@ public class GroupController {
     for (String ingString : userIngredientsNames) {
       userIngredients.add(Ingredient.getIngredient(ingString));
     }
-    newGroup.addUserToGroup("", userIngredients);
+    newGroup.addUserToGroup("user" + Math.random(), userIngredients);
     return newGroup.ID;
   }
 

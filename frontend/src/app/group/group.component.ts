@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Route} from '@angular/router';
+import {Group} from '../modell/group';
+import {GroupService} from '../services/group.service';
 
 @Component({
   selector: 'app-group',
@@ -8,14 +10,16 @@ import {ActivatedRoute, Route} from '@angular/router';
 })
 export class GroupComponent implements OnInit {
 
-  id: number;
+  group: Group;
 
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private groupService: GroupService
   ) { }
 
   ngOnInit(): void {
-    this.id = +this.route.snapshot.paramMap.get('groupID');
+    const id = +this.route.snapshot.paramMap.get('groupID');
+    this.groupService.getGroup(id).subscribe(gr => this.group = gr);
   }
 
 }

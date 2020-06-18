@@ -1,1 +1,6 @@
-<p>Welcome to group {{id}}</p>
+<div *ngIf="group">
+  <p>Welcome to group</p>
+  <p>{{group.gruppenRezept.name}}</p>
+  <div *ngFor="let user of group.user">{{user}}</div>
+  <div *ngFor="let ing of group.vorhandeneZutaten">{{ing.name}}</div>
+</div>

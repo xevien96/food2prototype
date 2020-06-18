@@ -39,7 +39,7 @@ export class GroupService {
   }
 
   public getGroup(id: number): Observable<Group>{
-    return this.client.get(this.groupURL + `/${id}`);
+    return this.client.get<Group>(this.groupURL + `/${id}`);
   }
 
   private handleError<T>(operation = 'operation', result?: T){

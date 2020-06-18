@@ -2,14 +2,14 @@ import {Recipe} from './recipe';
 
 export class Group {
 
-  public rezept: Recipe;
-  public users: string[];
-  public groupIngredients: string[];
+  public gruppenRezept: Recipe;
+  public user: string[];
+  public vorhandeneZutaten: string[];
 
-  constructor(rezept: Recipe, users: string[], groupIngredients: string[]){
-    this.rezept = rezept;
-    this.users = users;
-    this.groupIngredients = groupIngredients;
+  constructor(gruppenRezept: Recipe, user: string[], vorhandeneZutaten: string[]){
+    this.gruppenRezept = gruppenRezept;
+    this.user = user;
+    this.vorhandeneZutaten = vorhandeneZutaten;
   }
 
 }
