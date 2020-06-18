@@ -29,6 +29,14 @@ public class Recipe {
     return allRecipes.get(id);
   }
 
+  public static List<Recipe> getAllRecipesContainingAtLeastOneIngredient(List<Ingredient> userIngredients){
+    List<Recipe> result;
+    result = allRecipes.values().stream()
+      .filter(rezept -> rezept.getNumberOfUsedIngredients(userIngredients) > 0)
+      .collect(Collectors.toList());
+    return result;
+  }
+
   public String getName() {
     return name;
   }

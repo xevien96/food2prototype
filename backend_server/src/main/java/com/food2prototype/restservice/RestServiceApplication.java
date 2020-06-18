@@ -14,6 +14,7 @@ public class RestServiceApplication {
     SpringApplication.run(RestServiceApplication.class, args);
     MockDB.readDB();
     MockDB.initIngredients();
+    MockDB.getAllRecipes();
   }
 
   @Bean
