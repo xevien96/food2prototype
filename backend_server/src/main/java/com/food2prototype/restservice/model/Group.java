@@ -16,7 +16,10 @@ public class Group {
   private Set<Ingredient> vorhandeneZutaten;
   private Set<String> user;
 
+  private boolean completed;
+
   public Group(Recipe rezept) {
+    completed = false;
     gruppenRezept = rezept;
     vorhandeneZutaten = new HashSet<>();
     user = new HashSet<>();
@@ -32,7 +35,9 @@ public class Group {
     List<Group> groupsWithRecipe = new ArrayList<>();
     for (Group group : allGroups.values()) {
       if (group.gruppenRezept.equals(rezept)) {
-        groupsWithRecipe.add(group);
+        if(group.completed) {
+          groupsWithRecipe.add(group);
+        }
       }
     }
     return groupsWithRecipe;
@@ -63,6 +68,7 @@ public class Group {
       }
     }
     vorhandeneZutaten.addAll(nutzbareZutaten);
+    completed = gruppenRezept.getIngredients().containsAll(vorhandeneZutaten);
   }
 
   public Set<Ingredient> getNichtVorhandeneZutaten() {
