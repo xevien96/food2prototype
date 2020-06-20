@@ -1,9 +1,9 @@
 package com.food2prototype.restservice.model;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import com.food2prototype.restservice.model.stubs.RecipeStub;
+
+import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class Recipe {
@@ -11,12 +11,30 @@ public class Recipe {
   public static final org.slf4j.Logger logger =
     org.slf4j.LoggerFactory.getLogger(Recipe.class);
 
+  private static final AtomicInteger idCounter = new AtomicInteger(0);
+  private static final Map<Integer, Recipe> allRecipes = new HashMap<>();
+
   private String name;
   private Set<Ingredient> ingredients;
+  public final int ID;
 
   public Recipe(String name, Set<Ingredient> ingredients) {
     this.name = name;
     this.ingredients = ingredients;
+    ID = idCounter.getAndIncrement();
+    allRecipes.put(ID, this);
+  }
+
+  public static Recipe get(int id) {
+    return allRecipes.get(id);
+  }
+
+  public static List<Recipe> getAllRecipesContainingAtLeastOneIngredient(List<Ingredient> userIngredients){
+    List<Recipe> result;
+    result = allRecipes.values().stream()
+      .filter(rezept -> rezept.getNumberOfUsedIngredients(userIngredients) > 0)
+      .collect(Collectors.toList());
+    return result;
   }
 
   public String getName() {
@@ -25,6 +43,10 @@ public class Recipe {
 
   public Set<Ingredient> getIngredients() {
     return ingredients;
+  }
+
+  public RecipeStub toStub(){
+    return new RecipeStub(this.ID);
   }
 
   public int getNumberOfUsedIngredients(List<Ingredient> userIngredients) {

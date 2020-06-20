@@ -1,5 +1,8 @@
 package com.food2prototype.restservice.model;
 
+import com.food2prototype.restservice.model.stubs.RecipeStub;
+import com.food2prototype.restservice.model.stubs.ScoredRecipeStub;
+
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
@@ -9,36 +12,21 @@ public class RecipeProvider {
   public static final org.slf4j.Logger logger =
     org.slf4j.LoggerFactory.getLogger(RecipeProvider.class);
 
-  public static List<Recipe> getRecipesForIngredients(List<Ingredient> userIngredients){
-    List<Recipe> sensibleRecipes = MockDB.getAllRecipesContainingAtLeastOneIngredient(userIngredients);
+  public static List<RecipeStub> getRecipesForIngredients(List<Ingredient> userIngredients) {
+    List<Recipe> sensibleRecipes = Recipe.getAllRecipesContainingAtLeastOneIngredient(userIngredients);
 
-    List<ScoredRecipe> scoredRecipes = new LinkedList<>();
-    for(Recipe r : sensibleRecipes){
+    List<ScoredRecipeStub> scoredRecipes = new LinkedList<>();
+    for (Recipe r : sensibleRecipes) {
       List<Group> groupsWithRecipe = Group.getAllGroupsforRecipe(r);
-      int score = RecipeAlgorithm.getRating(r, userIngredients, groupsWithRecipe);
-      ScoredRecipe sr = new ScoredRecipe(score, r);
+      ScoredRecipeStub sr = RecipeAlgorithm.getRating(r, userIngredients, groupsWithRecipe);
       scoredRecipes.add(sr);
     }
 
-    List<Recipe> result = scoredRecipes.stream()
-      .sorted(Comparator.comparing(ScoredRecipe::getScore).reversed())
+    List<RecipeStub> result = scoredRecipes.stream()
+      .sorted(Comparator.comparing(ScoredRecipeStub::getScore).reversed())
       .map(scoredRecipe -> scoredRecipe.recipe)
       .collect(Collectors.toList());
 
     return result;
-  }
-
-  private static class ScoredRecipe {
-    public int score;
-    public Recipe recipe;
-
-    public ScoredRecipe(int score, Recipe recipe) {
-      this.score = score;
-      this.recipe = recipe;
-    }
-
-    public int getScore(){
-      return score;
-    }
   }
 }

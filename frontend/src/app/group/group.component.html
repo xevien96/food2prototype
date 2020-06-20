@@ -1,0 +1,11 @@
+<div *ngIf="group">
+  <p>Wilkommen in der Kochgruppe für das Rezept {{group.gruppenRezept.name}}</p>
+  <div>
+    <p>Nutzer*innen in der Gruppe</p>
+    <div *ngFor="let user of group.user">{{user}}</div>
+  </div>
+  <div>
+    <p>In der Gruppe vorhandene Zutaten</p>
+    <div *ngFor="let ing of group.vorhandeneZutaten">{{ing.name}}</div>
+  </div>
+</div>

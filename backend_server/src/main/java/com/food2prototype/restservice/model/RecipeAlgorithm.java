@@ -1,5 +1,9 @@
 package com.food2prototype.restservice.model;
 
+import com.food2prototype.restservice.model.stubs.GroupStub;
+import com.food2prototype.restservice.model.stubs.RecipeStub;
+import com.food2prototype.restservice.model.stubs.ScoredRecipeStub;
+
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -8,19 +12,30 @@ public class RecipeAlgorithm {
   public static final org.slf4j.Logger logger =
     org.slf4j.LoggerFactory.getLogger(RecipeAlgorithm.class);
 
-  public static int getRating(Recipe recipe, List<Ingredient> userIngredients, List<Group> groupsWithRecipe){
+  public static ScoredRecipeStub getRating(Recipe recipe, List<Ingredient> userIngredients, List<Group> groupsWithRecipe){
     int score = 0;
+    RecipeStub stub = new RecipeStub(recipe.ID);
     if(groupsWithRecipe.size() > 0){
-      score = 5;
-      score += getNumberOfUsedGroupIngredientsAfterJoin(userIngredients, groupsWithRecipe.get(0));
-      score -= getNumberOfMissingGroupIngredientsAfterJoin(userIngredients, groupsWithRecipe.get(0));
+      int maxGroupScore = Integer.MIN_VALUE;
+      Group selectedGroup = null;
+      for(Group group : groupsWithRecipe){
+        int tempGroupScore = 5;
+        tempGroupScore += getNumberOfUsedGroupIngredientsAfterJoin(userIngredients, group);
+        tempGroupScore -= getNumberOfMissingGroupIngredientsAfterJoin(userIngredients, group);
+        if(tempGroupScore > maxGroupScore){
+          maxGroupScore = tempGroupScore;
+          selectedGroup = group;
+        }
+      }
+      score = maxGroupScore;
+      stub = new GroupStub(recipe.ID, selectedGroup.ID);
     }
     else {
       score -= getNumberOfNotUsedIngredientsInRecipe(recipe, userIngredients);
     }
     score += getUsedIngredientsScore(recipe, userIngredients);
     score -= getNotUsedIngredientsScore(recipe, userIngredients);
-    return score;
+    return new ScoredRecipeStub(score, stub);
   }
 
   private static int getNumberOfUsedGroupIngredientsAfterJoin(List<Ingredient> userIngredients, Group group){
