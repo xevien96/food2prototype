@@ -21,7 +21,7 @@ export class GroupService {
   ) { }
 
   public addUserToGroup(recipe: RecipeStub | GroupStub, userZutaten: string[]): Observable<number>{
-    if ((recipe as GroupStub).groupID !== undefined){
+    if (this.isGroupStub(recipe)){
       const group = recipe as GroupStub;
       return this.addToExistingGroup(group, userZutaten);
     }
@@ -40,6 +40,10 @@ export class GroupService {
 
   public getGroup(id: number): Observable<Group>{
     return this.client.get<Group>(this.groupURL + `/${id}`);
+  }
+
+  public isGroupStub(recipe: RecipeStub): boolean{
+    return (recipe as GroupStub).groupID !== undefined;
   }
 
   private handleError<T>(operation = 'operation', result?: T){
