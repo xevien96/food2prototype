@@ -1,4 +1,11 @@
-Pfannkuchen.jpg: https://i.ytimg.com/vi/UKz5_FYdMbg/maxresdefault.jpg
-Schnitzel.jpg: https://media.istockphoto.com/vectors/german-or-austrian-dish-schnitzel-mit-pommes-vector-id961316964?k=6&m=961316964&s=612x612&w=0&h=MJoqPzg95-nIT4Ho8Gor6SyGEQFUZ4RXO5E_SMhi5ss=
-Panierter-Fisch.jpg: https://img.freepik.com/fotos-kostenlos/panierte-fischfilets_155003-393.jpg?size=626&ext=jpg
-Spiegelei-mit-Spinat.jpg: https://static.chefkoch-cdn.de/ck.de/rezepte/64/64908/701712-420x280-fix-spinat-mit-spiegelei.jpg
+Pfannkuchen.jpg: https://www.chefkoch.de/rezepte/876401193058553/Pfannkuchen-einfach-Erdbeerpfannkuchen-und-Pariser-Pfannkuchen.html
+Schnitzel-mit-Pommes.jpg: https://kochrezepte.community/rezept/wiener-schnitzel-mit-pommes/
+Panierter-Fisch.jpg: https://www.chefkoch.de/rezepte/1491071254209925/Panierter-Pangasius.html
+Ei-mit-Spinat.jpg: https://www.chefkoch.de/rezepte/936751199292797/Kartoffeln-Spinat-Kaese-und-Ei.html
+Nudeln-Carbonara.jpg: https://www.chefkoch.de/rezepte/1491131254215808/Spaghetti-Carbonara.html
+Aglio-e-olio.jpg: https://www.chefkoch.de/rezepte/1403101245224472/Aglio-e-Olio.html
+Nudeln-Bolognese.jpg: https://www.chefkoch.de/rezepte/1618631269095146/Spaghetti-Bolognese.html
+Linsen-Curry.jpg: https://www.chefkoch.de/rezepte/128381055063820/Rote-Linsen-Curry.html
+Ceasars-Salad.jpg: https://www.chefkoch.de/rezepte/3741311568068324/Ceasars-Salad.html
+Kartoffelsalat.jpg: https://www.chefkoch.de/rezepte/130001055852751/Schwaebischer-Kartoffelsalat.html
+Nudelsalat.jpg: https://www.chefkoch.de/rezepte/2917311444051618/Bester-und-leckerster-Nudelsalat.html

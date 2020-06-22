@@ -13,7 +13,8 @@ export class VerfuegbareZutatenService {
   private zutaten: string[];
 
   constructor() {
-    this.zutaten = ['Eier', 'Mehl', 'Milch', 'Paniermehl', 'Fleisch', 'Fisch', 'Spinat'];
+    this.zutaten = ['Eier', 'Mehl', 'Milch', 'Pommes', 'Schnitzel', 'Semmelbrösel', 'Sahne', 'Kartoffel', 'Spinat', 'Nudeln', 'Parmesan', 'Schinken', 'Knoblauch', 'Olivenöl', 'Petersilie', 'Chilischote', 'Hackfleisch', 'Tomate', 'Zwiebel', 'Tomatenmark', 'Linsen', 'Chilipulver', 'Salat', 'Hühnerbrust', 'Senf', 'Erbsen', 'Mais', 'Joghurt', 'Mayonnaise'];
+    this.zutaten.sort();
   }
 
   /**
