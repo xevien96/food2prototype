@@ -1,13 +1,20 @@
-<div *ngIf="group">
+<div *ngIf="group" class="chat_window">
   <p>Wilkommen in der Kochgruppe für das Rezept {{group.gruppenRezept.name}}</p>
-  <br><br>
-  <div>
+  <hr>
+  <div class="others">
     <p>Nutzer*innen in der Gruppe</p>
     <div *ngFor="let user of group.user">{{user}}</div>
   </div>
-  <br><br>
-  <div>
+  <br>
+  <div class="others">
     <p>In der Gruppe vorhandene Zutaten</p>
     <div *ngFor="let ing of group.vorhandeneZutaten">{{ing.name}}</div>
+  </div>
+  <br>
+  <div>
+    <mat-form-field  id="text_input">
+      <mat-label>Geben sie hier ihre Nachricht ein</mat-label>
+      <textarea matInput></textarea>
+    </mat-form-field>
   </div>
 </div>

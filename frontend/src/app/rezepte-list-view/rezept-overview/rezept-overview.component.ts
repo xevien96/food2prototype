@@ -3,6 +3,7 @@ import {TouchDeviceDetectService} from '../../services/touch-device-detect.servi
 import {Recipe} from '../../modell/recipe';
 import {RecipeStub} from '../../modell/recipe-stub';
 import {RezeptService} from '../../services/rezept.service';
+import {GroupService} from '../../services/group.service';
 
 @Component({
   selector: 'app-rezept-overview',
@@ -34,7 +35,8 @@ export class RezeptOverviewComponent implements OnInit, OnChanges {
 
   constructor(
     private touchDeviceService: TouchDeviceDetectService,
-    private recipeService: RezeptService
+    private recipeService: RezeptService,
+    public groupService: GroupService
   ) { }
 
   ngOnInit(): void {

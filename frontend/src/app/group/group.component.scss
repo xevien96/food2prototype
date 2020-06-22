@@ -1,0 +1,18 @@
+@import "../app.component";
+@import "../../custom-theme";
+
+#text_input{
+  width: 100%;
+}
+
+.chat_window{
+  width: 90vw;
+  height: 100%;
+}
+
+.others{
+  border: mat-color($frontend-primary) 1px solid;
+  border-radius: 10px;
+  padding: 2px;
+  background-color: mat-color($button-primary);
+}

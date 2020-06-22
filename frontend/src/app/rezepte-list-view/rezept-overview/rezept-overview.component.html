@@ -3,6 +3,7 @@
 
   </div>
   <img src="./assets/img/{{rezept.name}}.jpg" alt="Bild {{rezept.name}}">
+  <div *ngIf="groupService.isGroupStub(rezeptStub)">Es existiert eine Gruppe für dieses Rezept</div>
   <p>{{rezept.name}}</p>
   <div *ngIf="!isTouchDevice" class="button-theme">
     <button mat-flat-button color="primary" (click)="onRecipeApproved()">Beitreten</button>
