@@ -49,15 +49,6 @@ public class MockDB {
     return result;
   }
 
-  public static List<Recipe> getAllRecipesContainingAtLeastOneIngredient(List<Ingredient> userIngredients){
-    List<Recipe> allRecipes = getAllRecipes();
-    List<Recipe> result;
-    result = allRecipes.stream()
-      .filter(rezept -> rezept.getNumberOfUsedIngredients(userIngredients) > 0)
-      .collect(Collectors.toList());
-    return result;
-  }
-
   public static void initIngredients(){
     for(Object obj : ingredients.keySet()){
       String name = obj.toString();

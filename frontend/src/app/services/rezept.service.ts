@@ -3,6 +3,8 @@ import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {Recipe} from '../modell/recipe';
+import {RecipeStub} from '../modell/recipe-stub';
+import {GroupStub} from '../modell/group-stub';
 
 @Injectable({
   providedIn: 'root'
@@ -26,9 +28,15 @@ export class RezeptService {
    * Getter für Rezepte, die anhand einer Liste von Zutaten ermittelt werden soll
    * @param zutaten Liste der Zutaten die enthalten sein sollen
    */
-  getRezept(zutaten: string[]): Observable<Recipe[]> {
-    return this.client.get<Recipe[]>(this.rezeptUrl + '/search', {params: {ingredients: zutaten}}).pipe(
+  getRezepte(zutaten: string[]): Observable<RecipeStub[]> {
+    return this.client.get<RecipeStub[]>(this.rezeptUrl + '/search', {params: {ingredients: zutaten}}).pipe(
       catchError(this.handleError(`load recipe for ing: ${zutaten}`, null))
+    );
+  }
+
+  getRezept(ID: number): Observable<Recipe> {
+    return this.client.get<Recipe>(this.rezeptUrl + `/${ID}`).pipe(
+      catchError(this.handleError(`get recipe with id ${ID}`, null))
     );
   }
 

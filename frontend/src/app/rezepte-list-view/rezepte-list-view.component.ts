@@ -3,6 +3,7 @@ import {ActivatedRoute, Router, ParamMap} from '@angular/router';
 import {RezeptService} from '../services/rezept.service';
 import {Recipe} from '../modell/recipe';
 import {GroupService} from '../services/group.service';
+import {RecipeStub} from '../modell/recipe-stub';
 
 @Component({
   selector: 'app-rezept-view',
@@ -15,7 +16,7 @@ import {GroupService} from '../services/group.service';
 export class RezepteListViewComponent implements OnInit {
 
   zutaten: string[];
-  rezepte: Recipe[];
+  rezepteStubs: RecipeStub[];
   currentPosition: number;
 
   /**
@@ -26,17 +27,16 @@ export class RezepteListViewComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private rezepteService: RezeptService,
-    private groupService: GroupService,
+    private gruppenService: GroupService,
     private router: Router
   ) {
     this.currentPosition = 0;
-    this.rezepte = [];
   }
 
   ngOnInit(): void {
     this.route.queryParamMap.subscribe(map => {
       this.zutaten = map.getAll('ingredients');
-      this.rezepteService.getRezept(this.zutaten).subscribe(rez => this.rezepte = rez);
+      this.rezepteService.getRezepte(this.zutaten).subscribe(ret =>  this.rezepteStubs = ret);
     });
   }
 
@@ -47,9 +47,9 @@ export class RezepteListViewComponent implements OnInit {
     this.currentPosition++;
   }
 
-  onRecipeApproved(rezept: Recipe): void {
-    this.groupService.putGroup(rezept, this.zutaten).subscribe(() => {
-      this.router.navigate(['zutaten']);
+  onRecipeApproved(recipe: RecipeStub): void {
+    this.gruppenService.addUserToGroup(recipe, this.zutaten).subscribe(val => {
+      this.router.navigate([`group/${val}`]);
     });
   }
 

@@ -1,4 +1,4 @@
-<div (swipeleft)="onRecipeDiscarded()" *ngIf="rezept !== undefined">
+<div (swipeleft)="onRecipeDiscarded()" (swiperight)="onRecipeApproved()" *ngIf="rezept !== undefined">
   <div *ngIf="isTouchDevice" class="button-theme transparent_accept right">
 
   </div>

@@ -1,1 +1,3 @@
-<app-rezept-overview [rezept]="rezepte[currentPosition]" (recipeDiscarded)="onRecipeDiscarded()" (recipeApproved)="onRecipeApproved($event)"></app-rezept-overview>
+<div *ngIf="rezepteStubs">
+<app-rezept-overview [rezeptStub]="rezepteStubs[currentPosition]" (recipeDiscarded)="onRecipeDiscarded()" (recipeApproved)="onRecipeApproved($event)"></app-rezept-overview>
+</div>
