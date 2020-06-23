@@ -68,7 +68,7 @@ public class Group {
       }
     }
     vorhandeneZutaten.addAll(nutzbareZutaten);
-    completed = gruppenRezept.getIngredients().containsAll(vorhandeneZutaten);
+    completed = vorhandeneZutaten.containsAll(gruppenRezept.getIngredients());
   }
 
   public Set<Ingredient> getNichtVorhandeneZutaten() {
