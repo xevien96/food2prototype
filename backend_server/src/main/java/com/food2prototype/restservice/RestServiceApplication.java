@@ -21,7 +21,7 @@ public class RestServiceApplication {
     MockDB.readDB();
     MockDB.initIngredients();
     MockDB.getAllRecipes();
-    buildGroups();
+    //buildGroups();
   }
 
   private static void buildGroups(){

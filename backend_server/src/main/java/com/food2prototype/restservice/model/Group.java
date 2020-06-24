@@ -35,7 +35,7 @@ public class Group {
     List<Group> groupsWithRecipe = new ArrayList<>();
     for (Group group : allGroups.values()) {
       if (group.gruppenRezept.equals(rezept)) {
-        if(group.completed) {
+        if(!group.completed) {
           groupsWithRecipe.add(group);
         }
       }
@@ -68,7 +68,7 @@ public class Group {
       }
     }
     vorhandeneZutaten.addAll(nutzbareZutaten);
-    completed = gruppenRezept.getIngredients().containsAll(vorhandeneZutaten);
+    completed = vorhandeneZutaten.containsAll(gruppenRezept.getIngredients());
   }
 
   public Set<Ingredient> getNichtVorhandeneZutaten() {
