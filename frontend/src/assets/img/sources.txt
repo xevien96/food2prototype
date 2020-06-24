@@ -9,3 +9,4 @@ Linsen-Curry.jpg: https://www.chefkoch.de/rezepte/128381055063820/Rote-Linsen-Cu
 Ceasars-Salad.jpg: https://www.chefkoch.de/rezepte/3741311568068324/Ceasars-Salad.html
 Kartoffelsalat.jpg: https://www.chefkoch.de/rezepte/130001055852751/Schwaebischer-Kartoffelsalat.html
 Nudelsalat.jpg: https://www.chefkoch.de/rezepte/2917311444051618/Bester-und-leckerster-Nudelsalat.html
+Fisch-Gemüse-Pfanne.jpg: https://img.chefkoch-cdn.de/rezepte/672151169453409/bilder/96233/crop-600x400/lachs-zucchini-pfanne.jpg
