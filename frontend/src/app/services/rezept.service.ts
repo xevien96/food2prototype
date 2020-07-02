@@ -27,6 +27,7 @@ export class RezeptService {
   /**
    * Getter für Rezepte, die anhand einer Liste von Zutaten ermittelt werden soll
    * @param zutaten Liste der Zutaten die enthalten sein sollen
+   * @return Eine Liste mit RecipeStubs
    */
   getRezepte(zutaten: string[]): Observable<RecipeStub[]> {
     return this.client.get<RecipeStub[]>(this.rezeptUrl + '/search', {params: {ingredients: zutaten}}).pipe(
@@ -34,12 +35,22 @@ export class RezeptService {
     );
   }
 
+  /**
+   * Getter für ein Rezept
+   * @param ID ID des Rezepts
+   * @return Das REzept mit der ID id
+   */
   getRezept(ID: number): Observable<Recipe> {
     return this.client.get<Recipe>(this.rezeptUrl + `/${ID}`).pipe(
       catchError(this.handleError(`get recipe with id ${ID}`, null))
     );
   }
 
+  /**
+   * Generische Fehlerbehandlung
+   * @param operation Name der durchgeführten Operation
+   * @param result Zurückzugebendes Ergebnis
+   */
   private handleError<T>(operation = 'operation', result?: T){
     return (error: any): Observable<T> => {
       console.error(error);
