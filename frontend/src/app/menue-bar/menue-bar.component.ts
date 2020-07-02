@@ -18,6 +18,9 @@ export class MenueBarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * Geht eine Seite zurück
+   */
   goBack() {
     this.location.back();
   }

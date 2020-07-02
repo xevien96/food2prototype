@@ -16,17 +16,20 @@ import {GroupService} from '../../services/group.service';
 export class RezeptOverviewComponent implements OnInit, OnChanges {
 
   /**
-   * Name des anzuzeigenden Rezepts
+   * Stub des anzuzeigenden Rezepts
    */
   @Input() rezeptStub: RecipeStub;
 
   rezept: Recipe;
 
   /**
-   * @event Event das bei Ablehnung eines Rezeptes ausgelöst wird
+   * @event Event, dass bei Ablehnung eines Rezeptes ausgelöst wird
    */
   @Output() recipeDiscarded = new EventEmitter();
 
+  /**
+   * @event Event, dass bei Annahme eines Rezeptes ausgelöst wird
+   */
   @Output() recipeApproved = new EventEmitter<RecipeStub>();
 
   isTouchDevice: boolean;
@@ -43,6 +46,9 @@ export class RezeptOverviewComponent implements OnInit, OnChanges {
     this.isTouchDevice = this.touchDeviceService.isTouchDevice();
   }
 
+  /**
+   * Holt neues Rezept bei Änderung des Rezept-Stubs
+   */
   ngOnChanges(changes: SimpleChanges): void {
     if (this.rezeptStub !== undefined) {
       this.recipeService.getRezept(this.rezeptStub.recipeID).subscribe(rezept => this.rezept = rezept);
@@ -51,6 +57,9 @@ export class RezeptOverviewComponent implements OnInit, OnChanges {
     }
   }
 
+  /**
+   * Annahme eines Rezeptes
+   */
   onRecipeApproved(): void{
     this.recipeApproved.emit(this.rezeptStub);
   }
