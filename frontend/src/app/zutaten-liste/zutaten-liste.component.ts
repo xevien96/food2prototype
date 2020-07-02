@@ -80,7 +80,7 @@ export class ZutatenListeComponent implements OnInit, AfterViewChecked {
 
   /**
    * Entfernt die letzte hinzugefügte Zutat.
-   * Entfernt nicht wenn nur noch zwei Zutaten vorhanden sind
+   * Entfernt nicht, wenn nur noch zwei Zutaten vorhanden sind
    */
   removeZutat(): void {
     if (this.selectedZutaten.length > 2) {

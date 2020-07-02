@@ -19,11 +19,6 @@ export class RezepteListViewComponent implements OnInit {
   rezepteStubs: RecipeStub[];
   currentPosition: number;
 
-  /**
-   * Konstruktor
-   * @param route Routekomponente zur Extraction von URI-Parametern
-   * @param rezepteService Service zur Ermittlung passender Rezepte
-   */
   constructor(
     private route: ActivatedRoute,
     private rezepteService: RezeptService,
@@ -47,6 +42,10 @@ export class RezepteListViewComponent implements OnInit {
     this.currentPosition++;
   }
 
+  /**
+   * Reaktion auf Annahme eines Rezeptes
+   * @param recipe Angenommenes Rezept
+   */
   onRecipeApproved(recipe: RecipeStub): void {
     this.gruppenService.addUserToGroup(recipe, this.zutaten).subscribe(val => {
       this.router.navigate([`group/${val}`]);

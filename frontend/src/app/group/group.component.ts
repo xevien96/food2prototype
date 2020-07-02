@@ -8,6 +8,10 @@ import {GroupService} from '../services/group.service';
   templateUrl: './group.component.html',
   styleUrls: ['./group.component.scss']
 })
+
+/**
+ * Komponente zur Anzeige einer Gruppe mit Informationen zur Gruppe
+ */
 export class GroupComponent implements OnInit {
 
   group: Group;
